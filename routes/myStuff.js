@@ -39,10 +39,15 @@ async function getTable(type) {
         let collectionName = (type === "Anime" ? "animes":"mangas");
         const animeCollection = mongoose.connection.db.collection(collectionName);
         const animeData = await animeCollection.find({}).toArray();
+        let tableEntries = "";
         animeData.forEach( content => {
-            table += `<tr> <th>${content.title}</th> <th>${content.type}</th> <th>${content.genre}</th> <th>${content.status}</th> <th>${content.rating}</th> <th>${content.comments}</th> </tr>`;
+            tableEntries += `<tr> <th>${content.title}</th> <th>${content.type}</th> <th>${content.genre}</th> <th>${content.status}</th> <th>${content.rating}</th> <th>${content.comments}</th> </tr>`;
         });
-
+        if (tableEntries === "") {
+            table += `<tr> <td colspan="6">None</td> </tr>`;
+        } else {
+            table += tableEntries;
+        }
         mongoose.disconnect();
     } catch (err) {
       console.error(err);

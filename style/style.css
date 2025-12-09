@@ -17,15 +17,51 @@ body {
     background-color: rgb(2, 2, 44);
 }
 
-.top10AnimeTable {
-    border: rgb(206, 175, 2);
-}
+
 
 button {
     color: black;
 }
 
+/* ---------- Header -------------- */
+.header {
+    background-color: rgb(5, 5, 192);
+    padding: 10px 10px 10px 10px;
+    margin: 0;
+    border: 5px solid rgb(5, 5, 192);
+}
+
+.header nav a {
+    font-family: "Bitcount Prop Single";
+    color: rgb(206, 175, 2);
+    font-weight: bolder;
+}
+/* -------------------------------- */
+
+
+
+/* ------------- Browse --------------*/
+.top-section {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+
+.topAnimeTable, .topMangaTable {
+    border: solid rgb(206, 175, 2) 5px;
+    width: 100%;
+}
+
+th, td {
+    border: solid rgb(206, 175, 2) 5px;
+}
+
+.animeCover {
+    height: 150%;
+}
+
+/* ---------- Add Content ----------- */
 #addContent {
     color:black;
 }
-
