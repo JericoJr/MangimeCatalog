@@ -1,0 +1,22 @@
+{
+  "name": "final",
+  "version": "1.0.0",
+  "description": "Submitted by: Jerico Estrella (jestrel5)\r App Description: Song List? Anime List?\r YouTube Video Link: \r APIs: \r Contact Email:  jestrel5@terpmail.umd.edu\r Deployed App Link:",
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "websiteServer.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "dotenv": "^17.2.3",
+    "ejs": "^3.1.10",
+    "express": "^5.1.0",
+    "express-router": "^0.0.1",
+    "express-session": "^1.18.2",
+    "mongodb": "^7.0.0",
+    "mongoose": "^9.0.1",
+    "nodemon": "^3.1.11"
+  }
+}

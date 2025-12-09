@@ -1,0 +1,31 @@
+@import url('https://fonts.googleapis.com/css2?family=Bitcount+Prop+Single:wght@100..900&display=swap');
+
+* {
+    color: white;
+}
+
+input, select, option, textarea {
+    color: black;
+}
+
+h1 {
+    font-family: "Bitcount Prop Single";
+    color: rgb(206, 175, 2);
+}
+
+body {
+    background-color: rgb(2, 2, 44);
+}
+
+.top10AnimeTable {
+    border: rgb(206, 175, 2);
+}
+
+button {
+    color: black;
+}
+
+#addContent {
+    color:black;
+}
+

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Stuff</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <div class="header">
+        <nav>
+            <a href="/">Home</a>
+            <a href="/Browse">Browse</a>
+            <a href="/myStuff">MyStuff</a>
+        </nav>
+    </div>
+    <h1>My Stuff</h1>
+    <h2>Anime/Manga Form</h2>
+    <a href="/addContent">
+        <button id="addContent">Add Content +</button>
+    </a>    
+    <form action="myStuff/deleteAll" method="POST">
+        <button id="deleteAllContent">Delete All</button>
+    </form>
+    <div class="table-section">
+        <div class="tanime-box">
+            <%- animeTable %>
+        </div>
+        <div class="tmanga-box">
+            <%- mangaTable %>
+        </div>
+    </div>
+</body>
+</html>

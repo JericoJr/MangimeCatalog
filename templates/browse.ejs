@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Browse</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <div class="header">
+        <nav>
+            <a href="/">Home</a>
+            <a href="/Browse">Browse</a>
+            <a href="/myStuff">MyStuff</a>
+        </nav>
+    </div>
+    <div class="browse-section">
+        <h1>Browse</h1>
+        <div class="top10Anime-section">
+            <table class="top10AnimeTable" border="1">
+                <tr><th>Pic</th><th>Rank</th><th>Title</th><th>Genres</th><th>Status</th></tr>
+                <%- animeList %>
+            </table>
+        </div>
+    </div>
+    
+</body>
+</html>
