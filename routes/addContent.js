@@ -5,14 +5,15 @@ const mongoose = require("mongoose");
 
 router.get("/", (request, response) => {
     console.log("\nEntering Form Page");
-    response.render("addContentForm");
+    response.render("addContentForm", {message: null});
 });
 
 
 router.post("/submit", async (request, response) => {  
     console.log('POST request to /addContentForm/submit');
-    await addToDB(request);
-    response.render("addContentForm");
+    let resultMessage = await addToDB(request);
+    console.log(resultMessage)
+    response.render("addContentForm", {message: resultMessage});
 });
 
 
@@ -56,7 +57,7 @@ async function addToDB(request) {
         await Manga.create({
             title: request.body.title,
             type: "Manga",
-            status: request.body.Status,
+            status: request.body.status,
             genre: request.body.genre,
             rating: request.body.rating,
             comments: request.body.comments
@@ -66,7 +67,9 @@ async function addToDB(request) {
         mongoose.disconnect();
     } catch (err) {
       console.error(err);
+      return `<p class="err-message">Error: ${request.body.title} was Not Added to Database</p>`;
     }
+    return `<p class="succ-message">"${request.body.title}" was Sucessfully Added to Database!</p>`;
 }
 
 module.exports = router; 

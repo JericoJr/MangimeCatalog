@@ -8,49 +8,61 @@
 </head>
 <body>
     <div class="header">
-        <nav>
-            <a href="/">Home</a>
-            <a href="/Browse">Browse</a>
-            <a href="/myStuff">MyStuff</a>
-        </nav>
+        <div class="title-section">
+            <h1>Mangime Catalog</h1>
+        </div>
+        <div class="links-section">
+            <nav>
+                <a href="/">Home</a>
+                <a href="/Browse">Browse</a>
+                <a href="/myStuff">MyStuff</a>
+            </nav>
+        </div>
     </div>
-    <h1>Form</h1>
-    <div class="form-section">
-        <form action="addContent/submit" method="POST">
-            <fieldset>
-                <label>Title: <input type="text" name="title" required></label> <br>
-                <label>Type: 
-                    <label> <input type="radio" name="type" value="Manga" required> Manga </label>
-                    <label> <input type="radio" name="type" value="Anime"> Anime </label>
-                </label> <br>  
-                <label>Status: </label>   
-                <select name="status" required>
-                    <option value="Completed">Completed</option>
-                    <option value="Reading">Reading</option>
-                    <option value="Waitlist">Waitlist</option>
-                </select> <br>     
-                <label>Genre: </label> <br>
-                <label><input type="checkbox" name="genre" value="Action">Action</label>
-                <label><input type="checkbox" name="genre" value="Adventure">Adventure</label>
-                <label><input type="checkbox" name="genre" value="Comedy">Comedy</label>
-                <label><input type="checkbox" name="genre" value="Drama">Drama</label>
-                <label><input type="checkbox" name="genre" value="Fantasy">Fantasy</label>
-                <label><input type="checkbox" name="genre" value="Historical">Historical</label>
-                <label><input type="checkbox" name="genre" value="Horror">Horror</label>
-                <label><input type="checkbox" name="genre" value="Mystery">Mystery</label>
-                <label><input type="checkbox" name="genre" value="Romance">Romance</label>
-                <label><input type="checkbox" name="genre" value="Sci-Fi">Sci-Fi</label>
-                <label><input type="checkbox" name="genre" value="Slice-Of-Life">Slice Of Life</label>
-                <br>
-                <label>Rating: <input type="number" name="rating" min="1" max="10" required> out of 10</label> <br>
-                <label>Comments:</label><br>
-                <label><textarea rows="5" cols="80" name="comments"></textarea></label>
-                <br>
-                <input type="reset">
-                <input type="submit" value="Submit">
-            </fieldset>
-        </form>
+
+    <div class="body-content">
+        <h1>Form</h1>
+        <div class="form-section">
+            <form action="addContent/submit" method="POST">
+                <fieldset>
+                    <label>Title: <input type="text" name="title" required></label> <br>
+                    <label>Type: 
+                        <label> <input type="radio" name="type" value="Manga" required> Manga </label>
+                        <label> <input type="radio" name="type" value="Anime"> Anime </label>
+                    </label> <br>  
+                    <label>Status: </label>   
+                    <select name="status" required>
+                        <option value="Completed">Completed</option>
+                        <option value="Reading">Reading</option>
+                        <option value="Waitlist">Waitlist</option>
+                    </select> <br>     
+                    <label>Genre: </label> <br>
+                    <label><input type="checkbox" name="genre" value="Action">Action</label>
+                    <label><input type="checkbox" name="genre" value="Adventure">Adventure</label>
+                    <label><input type="checkbox" name="genre" value="Comedy">Comedy</label>
+                    <label><input type="checkbox" name="genre" value="Drama">Drama</label>
+                    <label><input type="checkbox" name="genre" value="Fantasy">Fantasy</label>
+                    <label><input type="checkbox" name="genre" value="Historical">Historical</label>
+                    <label><input type="checkbox" name="genre" value="Horror">Horror</label>
+                    <label><input type="checkbox" name="genre" value="Mystery">Mystery</label>
+                    <label><input type="checkbox" name="genre" value="Romance">Romance</label>
+                    <label><input type="checkbox" name="genre" value="Sci-Fi">Sci-Fi</label>
+                    <label><input type="checkbox" name="genre" value="Slice-Of-Life">Slice Of Life</label>
+                    <br>
+                    <label>Rating: <input type="number" name="rating" min="1" max="10" required> out of 10</label> <br>
+                    <label>Comments:</label><br>
+                    <label><textarea rows="5" cols="80" name="comments"></textarea></label>
+                    <br>
+                    <input type="reset">
+                    <input type="submit" value="Submit">
+                </fieldset>
+            </form>
+        </div>
+        <div class="message-section">
+            <%- message %>
+        </div>
     </div>
+  
     
 </body>
 </html>

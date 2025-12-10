@@ -1,5 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Bitcount+Prop+Single:wght@100..900&display=swap');
 
+html {
+    font-size: 100%; /* 16px default */     
+    width: 100%;   
+}
+
 * {
     color: white;
 }
@@ -11,24 +16,42 @@ input, select, option, textarea {
 h1 {
     font-family: "Bitcount Prop Single";
     color: rgb(206, 175, 2);
+    font-size: 2.5rem;
+}
+
+h2 {
+    font-family: "Bitcount Prop Single";
+    color: rgb(206, 175, 2);
+    font-size: 1.5rem;
 }
 
 body {
     background-color: rgb(2, 2, 44);
 }
 
-
-
 button {
     color: black;
+}
+
+.body-content {
+    display: flex;
+    flex-direction: column;
+    width: 97.5%;
+    /* border: 2px solid magenta; */
+    align-content: center;
+    justify-content: center;
+    margin-left: 1%;
 }
 
 /* ---------- Header -------------- */
 .header {
     background-color: rgb(5, 5, 192);
-    padding: 10px 10px 10px 10px;
+    padding: 0.7rem 0.7rem 0.7rem 0.7rem;
     margin: 0;
-    border: 5px solid rgb(5, 5, 192);
+    border: 0.35rem solid rgb(5, 5, 192);
+    border-radius: 2rem;
+    display: flex;
+    flex-direction: row;
 }
 
 .header nav a {
@@ -36,6 +59,46 @@ button {
     color: rgb(206, 175, 2);
     font-weight: bolder;
 }
+
+.title-section {
+    width: 40%;
+}
+
+.title-section h1 {
+    padding: 0;
+    margin: 0;
+}
+
+.links-section {
+    width: 80%;
+}
+
+.links-section nav {
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+    align-self: center;
+    gap: 1rem;
+
+}
+
+.links-section nav a{
+    font-family: "Bitcount Prop Single";
+    color: rgb(206, 175, 2);
+    font-size: 2.5rem;
+}
+
+.links-section nav a:hover{
+    color: rgb(255, 245, 186);
+    font-size: 2.48rem;
+}
+
+/* .header div {
+    border: white solid 2px;
+} */
+
 /* -------------------------------- */
 
 
@@ -45,23 +108,110 @@ button {
     width: 100%;
     display: flex;
     flex-direction: row;
+    /* border: 2px solid orange; */
+    height: 100%;
 }
 
-
-.topAnimeTable, .topMangaTable {
-    border: solid rgb(206, 175, 2) 5px;
+.topAnime-section, .topManga-section {
+    /* border: 2px solid red; */
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
     width: 100%;
 }
 
-th, td {
-    border: solid rgb(206, 175, 2) 5px;
+.topAnime-content, .topManga-content {
+    /* border: 2px solid greenyellow; */
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-.animeCover {
-    height: 150%;
+.topAnimeTable, .topMangaTable {
+    border: solid rgb(206, 175, 2) 0.3rem;
 }
 
-/* ---------- Add Content ----------- */
-#addContent {
-    color:black;
+.topHeaderTable th, .topBodyTable td {
+    border: solid rgb(206, 175, 2) 0.2rem;
+}
+
+.topHeaderTable th {
+    color: rgb(206, 175, 2);
+    font-size: 2rem;
+}
+
+.topBodyTable td {
+    font-size: 1rem;
+    text-align: center;
+}
+
+.topTableRow {
+    max-height: 15rem;
+}
+
+.topTableRow td {
+    height: 8rem;
+}
+
+.animeCover, .mangaCover {
+    height: 15rem;
+    width: 12rem;
+    /* border: 2px solid red; */
+}
+
+
+/* ---------- My Stuff --------------- */
+
+.button-section, .flex-row {
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    gap: 1.5rem;
+    /* border: red solid 2px; */
+}
+
+.button-section > *, .flex-row > * {
+    align-content: center;
+    justify-content: center;
+}
+
+#addContent, #deleteAllContent, #filterMangaList, #filterAnimeList {
+    border: rgb(206, 175, 2) solid 0.2rem;
+    border-radius: 0.7rem;
+    background-color: rgb(5, 5, 192);
+    color: white;
+    padding: 0.4rem;
+    font-size: 0.8rem;
+}
+
+#addContent:hover, #deleteAllContent:hover {
+    text-decoration: underline;
+    background-color: rgb(76, 76, 221);
+    font-size: 0.75rem;
+}
+
+.myStuffTable {
+    width: 100%;
+    border: solid rgb(206, 175, 2) 0.2rem;
+}
+
+.myStuffTable th, .myStuffTable td {
+    border: solid rgb(206, 175, 2) 0.15rem;
+    text-align: center;
+}
+
+.myStuffTableBody {
+    height: 10%;
+}
+
+
+/* --------- addContentForm ----------- */
+
+.err-message {
+    color: red;
+}
+
+.succ-message {
+    color: green;
 }

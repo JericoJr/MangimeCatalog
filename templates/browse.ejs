@@ -8,52 +8,66 @@
 </head>
 <body>
     <div class="header">
-        <nav>
-            <a href="/">Home</a>
-            <a href="/Browse">Browse</a>
-            <a href="/myStuff">MyStuff</a>
-        </nav>
+        <div class="title-section">
+            <h1>Mangime Catalog</h1>
+        </div>
+        <div class="links-section">
+            <nav>
+                <a href="/">Home</a>
+                <a href="/Browse">Browse</a>
+                <a href="/myStuff">MyStuff</a>
+            </nav>
+        </div>
     </div>
-    <div class="browse-section">
-        <h1>Browse</h1>
-        <div class="top-section">
-            <div class="topAnime-section">
-                <table class="topAnimeTable">
-                    <colgroup>
-                        <col style="width: 15%">   
-                        <col style="width: 10%">  
-                        <col style="width: 30%">   
-                        <col style="width: 25%">  
-                        <col style="width: 20%">    
-                    </colgroup>
-                    <thead>
-                        <tr><th class="topAnimePic">Pic</th><th class="topAnimeRank">Rank</th><th class="topAnimeTitle">Title</th><th class="topAnimeGenres">Genres</th><th class="topAnimeStatus">Status</th></tr>
-                    </thead>
-                    <tbody>
-                        <%- topAnimeList %>
-                    </tbody>
-                </table>
-            </div>
-            <div class="topManga-section">
-                <table class="topMangaTable">
-                    <colgroup>
-                        <col style="width: 15%">   
-                        <col style="width: 10%">  
-                        <col style="width: 30%">   
-                        <col style="width: 25%">  
-                        <col style="width: 20%">    
-                    </colgroup>
-                    <thead>
-                        <tr><th class="topMangaPic"></th><th class="topMangaRank">Rank</th><th class="topMangaTitle">Title</th><th class="topMangaGenres">Genres</th><th class="topMangaStatus">Status</th></tr>
-                    </thead>
-                    <tbody>
-                        <%- topMangaList %>
-                    </tbody>
-                </table>
+
+    <div class="body-content">
+        <div class="browse-section">
+            <h1>Browse</h1>
+            <div class="top-section">
+                <div class="topAnime-section">
+                    <div class="topAnime-content">
+                        <h2>Top Anime</h2>
+                        <table class="topAnimeTable">
+                            <colgroup>
+                                <col style="width: 7%">   
+                                <col style="width: 20%">  
+                                <col style="width: 31%">   
+                                <col style="width: 27%">  
+                                <col style="width: 17.5%">    
+                            </colgroup>
+                            <thead class="topHeaderTable">
+                                <tr><th class="topAnimeRank">Rank</th><th class="topAnimePic"></th><th class="topAnimeTitle">Title</th><th class="topAnimeGenres">Genres</th><th class="topAnimeStatus">Status</th></tr>
+                            </thead>
+                            <tbody class="topBodyTable">
+                                <%- topAnimeList %>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="topManga-section">
+                    <div class="topManga-content">
+                        <h2>Top Manga</h2>
+                        <table class="topMangaTable">
+                            <colgroup>
+                                <col style="width: 7%">   
+                                <col style="width: 20%">  
+                                <col style="width: 31%">   
+                                <col style="width: 27%">  
+                                <col style="width: 17.5%">    
+                            </colgroup>
+                            <thead class="topHeaderTable">
+                                <tr><th class="topMangaRank">Rank</th><th class="topMangaPic"></th><th class="topMangaTitle">Title</th><th class="topMangaGenres">Genres</th><th class="topMangaStatus">Status</th></tr>
+                            </thead>
+                            <tbody class="topBodyTable">
+                                <%- topMangaList %>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
-       
     </div>
+    
     
 </body>
 </html>

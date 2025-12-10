@@ -7,28 +7,52 @@
     <link rel="stylesheet" href="/style.css">
 </head>
 <body>
-    <div class="header">
-        <nav>
-            <a href="/">Home</a>
-            <a href="/Browse">Browse</a>
-            <a href="/myStuff">MyStuff</a>
-        </nav>
-    </div>
-    <h1>My Stuff</h1>
-    <h2>Anime/Manga Form</h2>
-    <a href="/addContent">
-        <button id="addContent">Add Content +</button>
-    </a>    
-    <form action="myStuff/deleteAll" method="POST">
-        <button id="deleteAllContent">Delete All</button>
-    </form>
-    <div class="table-section">
-        <div class="tanime-box">
-            <%- animeTable %>
+   <div class="header">
+        <div class="title-section">
+            <h1>Mangime Catalog</h1>
         </div>
-        <div class="tmanga-box">
-            <%- mangaTable %>
+        <div class="links-section">
+            <nav>
+                <a href="/">Home</a>
+                <a href="/Browse">Browse</a>
+                <a href="/myStuff">MyStuff</a>
+            </nav>
         </div>
     </div>
+
+    <div class="body-content">
+        <h1>My Stuff</h1>
+        <div class="button-section">
+            <h2>Anime/Manga Form:</h2> 
+            <a href="/addContent">
+                <button id="addContent">Add Content +</button>
+            </a>    
+            <form action="myStuff/deleteAll" method="POST">
+                <button id="deleteAllContent">Delete All</button>
+            </form>
+        </div>
+
+        <div class="table-section">
+            <div class="tanime-box">
+                <div class="flex-row">
+                    <h2>Anime List:</h2>
+                    <a href="/filterMyAnime">
+                        <button id="filterAnimeList">Filter Anime</button>
+                    </a>    
+                </div>
+                <%- animeTable %>
+            </div>
+            <div class="tmanga-box">
+                <div class="flex-row">
+                    <h2>Manga List:</h2>
+                    <a href="/filterMyManga">
+                        <button id="filterMangaList">Filter Manga</button>
+                    </a> 
+                </div>
+                <%- mangaTable %>
+            </div>
+        </div>
+    </div>
+    
 </body>
 </html>
