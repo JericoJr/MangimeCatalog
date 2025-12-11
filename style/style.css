@@ -16,15 +16,14 @@ input, select, option, textarea {
 h1 {
     font-family: "Bitcount Prop Single";
     color: rgb(206, 175, 2);
-    font-size: 2.5rem;
+    font-size: 4vw;
 }
 
 h2 {
     font-family: "Bitcount Prop Single";
     color: rgb(206, 175, 2);
-    font-size: 1.5rem;
+    font-size: 4vw;
 }
-
 
 body {
     background-color: rgb(2, 2, 44);
@@ -47,12 +46,17 @@ button {
 /* ---------- Header -------------- */
 .header {
     background-color: rgb(5, 5, 192);
-    padding: 0.7rem 0.7rem 0.7rem 0.7rem;
+    padding: 0.7vw 0.7vw 0.7vw 0.7vw;
     margin: 0;
-    border: 0.35rem solid rgb(5, 5, 192);
-    border-radius: 2rem;
+    border: 0.35vw solid rgb(5, 5, 192);
+    border-radius: 2vw;
     display: flex;
     flex-direction: row;
+    position: inherit;
+}
+
+.website-name {
+    font-size: 4vw;
 }
 
 .header nav a {
@@ -62,6 +66,10 @@ button {
 }
 
 .title-section {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
     width: 40%;
 }
 
@@ -71,7 +79,11 @@ button {
 }
 
 .links-section {
-    width: 80%;
+    width:60%;
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+    align-items: center;
 }
 
 .links-section nav {
@@ -81,19 +93,19 @@ button {
     flex-direction: row;
     justify-content: right;
     align-self: center;
-    gap: 1rem;
-
+    align-items: center;
+    gap: 3vw;
 }
 
 .links-section nav a{
     font-family: "Bitcount Prop Single";
     color: rgb(206, 175, 2);
-    font-size: 2.5rem;
+    font-size: 3.9vw;
 }
 
 .links-section nav a:hover{
     color: rgb(255, 245, 186);
-    font-size: 2.48rem;
+    font-size: 3.8vw;
 }
 
 /* .header div {
@@ -120,38 +132,41 @@ button {
     padding: 0;
 }
 
-.welcome-section h1 {
+.welcome1-heading {
     font-family: "Bitcount Prop Single";
     color: rgb(206, 175, 2);
-    font-size: 5.0rem;
+    font-size: 6vw;
+    text-align: center;
     margin: 0;
     padding: 0;
 }
 
-.welcome-section h1:hover {
+.welcome1-heading:hover {
     font-family: "Bitcount Prop Single";
     color: rgb(255, 238, 144);
-    font-size: 5.2rem;
+    font-size: 5.5vw;
     text-decoration: underline;
     margin: 0;
     padding: 0;
 }
 
-
-.welcome-section h2 {
+.welcome2-heading {
     font-family: "Bitcount Prop Single";
     color: rgb(206, 175, 2);
-    font-size: 2.0rem;
+    font-size: 4vw;
+    text-align: center;
     margin: 0;
     padding: 0;
 }
 
-.welcome-section h3 {
+.welcome3-heading {
     font-family: "Bitcount Prop Single";
     color: rgb(206, 175, 2);
-    font-size: 1.5rem;
+    font-size: 2.5vw;
+    text-align: center;
     margin: 0;
     padding: 0;
+    font-style: italic;
 }
 
 .random-section {
@@ -167,19 +182,19 @@ button {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 0.3rem;
-    margin: 2rem;
+    gap: 2vw;
+    margin: 2vw;
     margin-bottom: 0;
-    padding: 0;
-    border: 0.5rem solid rgb(206, 175, 2);
-    border-radius: 2rem;
+    padding: 2vw;
+    border: 1.5vw solid rgb(206, 175, 2);
+    border-radius: 5vw;
     width: 70%;
-    padding-bottom: 2rem;
 }
 
 .random-content h1, .random-content h2 {
     margin: 0;
     padding: 0;
+    text-align: center;
 }
 
 .random-picks-section {
@@ -189,31 +204,39 @@ button {
     width: 90%;
     align-items: center;
     justify-content: center;
-    gap: 10rem;
+    gap: 2vw;
 }
 
 .random-anime, .random-manga {
-    border: 0.5rem solid rgb(5, 5, 192);
-    border-radius: 2rem;
+    border: 1.5vw solid rgb(5, 5, 192);
+    border-radius: 2vw;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 30rem;
-    width: 32%;
+    height: 44vw;
+    width: 45%;
 }
 
 .randomAnimePick, .randomMangaPick {
-    height: 10%;
+    height: 15%;
     width: 100%;
-    border: 2px solid palegreen;
+    /* border: 2px solid palegreen; */
     font-weight: bold;
     text-align: center;
+    justify-content: center;
+    font-size: 2vw;
+}
+
+.randomImgContainer {
+    border: 0.8vw solid rgb(206, 175, 2);
+    border-radius: 1vw;
+    height: 65%;
 }
 
 .randomAnimeImg, .randomMangaImg {
-    height: 70%;
-    width: 18rem;
+    width: 25vw;
+    height: 100%;
     /* border: 2px solid red; */
 }
 

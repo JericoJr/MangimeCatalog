@@ -33,7 +33,7 @@ async function randomContent(type) {
         const pick = data[randIndex];
         const entry = pick.entry[0];
 
-        displayPick += `<p class="random${type}Pick">${entry.title}</p><img class="random${type}Img" src="${entry.images.webp.image_url}">`;
+        displayPick += `<p class="random${type}Pick">${entry.title}</p><div class="randomImgContainer"><img class="random${type}Img" src="${entry.images.webp.image_url}"></div>`;
         return displayPick;
     } catch(error) {
         console.log("\nError fetching data:", error);
