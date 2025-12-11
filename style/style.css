@@ -163,7 +163,7 @@ button {
 
 /* ---------- My Stuff --------------- */
 
-.button-section, .flex-row {
+.button-section {
     display: flex;
     flex-direction: row;
     align-content: center;
@@ -176,7 +176,7 @@ button {
     justify-content: center;
 }
 
-#addContent, #deleteAllContent, #filterMangaList, #filterAnimeList {
+#addContent, #deleteAllContent {
     border: rgb(206, 175, 2) solid 0.2rem;
     border-radius: 0.7rem;
     background-color: rgb(5, 5, 192);
@@ -205,6 +205,42 @@ button {
     height: 10%;
 }
 
+.flex-column {
+    display: flex;
+    flex-direction: column;
+}
+
+#filterContent, #filterReset {
+    border: rgb(206, 175, 2) solid 0.2rem;
+    border-radius: 0.7rem;
+    background-color: rgb(5, 5, 192);
+    color: white;
+    padding: 0.4rem 1rem 0.4rem 1rem;
+    font-size: 0.8rem;
+}
+
+.filter-btn-section {
+    /* border: 2px solid red; */
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+    margin-top: 0.5rem;
+    gap: 0.5rem;
+}
+
+.legend-filters {
+    color: rgb(206, 175, 2);
+}
+
+.fieldset-filters {
+    border: 2px solid rgb(206, 175, 2);
+}
+
+
+.fieldset-type, .fieldset-categories {
+    border: 2px solid  rgb(5, 5, 192);
+}
+
 
 /* --------- addContentForm ----------- */
 
@@ -214,4 +250,14 @@ button {
 
 .succ-message {
     color: green;
+}
+
+#back-button {
+    margin-top: 1rem;
+    border: rgb(206, 175, 2) solid 0.2rem;
+    border-radius: 0.3rem;
+    background-color: rgb(5, 5, 192);
+    color: white;
+    padding: 0.4rem;
+    font-size: 0.8rem;
 }

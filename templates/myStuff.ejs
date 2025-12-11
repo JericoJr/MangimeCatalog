@@ -31,24 +31,52 @@
                 <button id="deleteAllContent">Delete All</button>
             </form>
         </div>
-
+        <div class="filter-section">
+            <form action="myStuff/filter" method="POST">
+                <fieldset class="fieldset-filters">
+                    <legend class="legend-filters">Filters</legend>
+                    <fieldset class="fieldset-type">
+                        <legend class="legend-type">Type:</legend>
+                        <label><input type="radio" name="filterType" value="Anime">Anime</label>
+                        <label><input type="radio" name="filterType" value="Manga">Manga</label>
+                        <label><input type="radio" name="filterType" value="Both" checked>Both</label>
+                    </fieldset>
+                    <fieldset class="fieldset-categories">
+                        <legend class="legend-catgeories">Sort Categories</legend>
+                        <fieldset>
+                            <legend class="legend-time">Time:</legend>
+                                <label><input type="radio" name="sortFilter" value="earliest" default checked>Earliest</label>
+                                <label><input type="radio" name="sortFilter" value="newest">Newest</label>
+                            </fieldset>
+                            <fieldset>
+                                <legend class="legend-title">Title:</legend>
+                                    <label><input type="radio" name="sortFilter" value="title-asc">Title Ascending</label>
+                                    <label><input type="radio" name="sortFilter" value="title-des">Title Descending</label>
+                            </fieldset>
+                            <fieldset>
+                                <legend class="legend-status">Status:</legend>
+                                    <label><input type="radio" name="sortFilter" value="status">Status</label>
+                            </fieldset>
+                            <fieldset>
+                                <legend class="legend-rating">Rating:</legend>       
+                                    <label><input type="radio" name="sortFilter" value="rating-asc">Rating Ascending</label>
+                                    <label><input type="radio" name="sortFilter" value="rating-des">Rating Descending</label>
+                        </fieldset>
+                    </fieldset>
+                    <div class="filter-btn-section">
+                        <input type="reset" id="filterReset">
+                        <button type="submit" id="filterContent">Filter</button>
+                    </div>
+                </fieldset>                        
+            </form>
+        </div>
         <div class="table-section">
             <div class="tanime-box">
-                <div class="flex-row">
-                    <h2>Anime List:</h2>
-                    <a href="/filterMyAnime">
-                        <button id="filterAnimeList">Filter Anime</button>
-                    </a>    
-                </div>
+                <h2>Anime List:</h2>    
                 <%- animeTable %>
             </div>
             <div class="tmanga-box">
-                <div class="flex-row">
-                    <h2>Manga List:</h2>
-                    <a href="/filterMyManga">
-                        <button id="filterMangaList">Filter Manga</button>
-                    </a> 
-                </div>
+                <h2>Manga List:</h2>
                 <%- mangaTable %>
             </div>
         </div>

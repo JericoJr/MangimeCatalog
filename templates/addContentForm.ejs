@@ -11,19 +11,15 @@
         <div class="title-section">
             <h1>Mangime Catalog</h1>
         </div>
-        <div class="links-section">
-            <nav>
-                <a href="/">Home</a>
-                <a href="/Browse">Browse</a>
-                <a href="/myStuff">MyStuff</a>
-            </nav>
-        </div>
     </div>
 
     <div class="body-content">
+        <a href="/myStuff" class="back-section">
+            <button id="back-button">back</button>
+        </a>  
         <h1>Form</h1>
         <div class="form-section">
-            <form action="addContent/submit" method="POST">
+            <form action="/addContent/submit" method="POST">
                 <fieldset>
                     <label>Title: <input type="text" name="title" required></label> <br>
                     <label>Type: 
@@ -33,7 +29,7 @@
                     <label>Status: </label>   
                     <select name="status" required>
                         <option value="Completed">Completed</option>
-                        <option value="Reading">Reading</option>
+                        <option value="Reading/Watching">Reading/Watching</option>
                         <option value="Waitlist">Waitlist</option>
                     </select> <br>     
                     <label>Genre: </label> <br>
