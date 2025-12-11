@@ -172,7 +172,9 @@ button {
     margin-bottom: 0;
     padding: 0;
     border: 0.5rem solid rgb(206, 175, 2);
+    border-radius: 2rem;
     width: 70%;
+    padding-bottom: 2rem;
 }
 
 .random-content h1, .random-content h2 {
@@ -183,19 +185,35 @@ button {
 .random-picks-section {
     display: flex;
     flex-direction: row;
-    border: 2px solid pink;
+    /* border: 2px solid pink; */
     width: 90%;
     align-items: center;
     justify-content: center;
+    gap: 10rem;
 }
 
 .random-anime, .random-manga {
-    border: 0.2rem solid rgb(206, 175, 2);
+    border: 0.5rem solid rgb(5, 5, 192);
+    border-radius: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 30rem;
+    width: 32%;
+}
+
+.randomAnimePick, .randomMangaPick {
+    height: 10%;
+    width: 100%;
+    border: 2px solid palegreen;
+    font-weight: bold;
+    text-align: center;
 }
 
 .randomAnimeImg, .randomMangaImg {
-    height: 15rem;
-    width: 12rem;
+    height: 70%;
+    width: 18rem;
     /* border: 2px solid red; */
 }
 
