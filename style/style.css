@@ -25,6 +25,7 @@ h2 {
     font-size: 1.5rem;
 }
 
+
 body {
     background-color: rgb(2, 2, 44);
 }
@@ -99,8 +100,104 @@ button {
     border: white solid 2px;
 } */
 
-/* -------------------------------- */
+/* -------------- Home ---------------- */
 
+.home-content {
+    display: flex;
+    flex-direction: column;
+    /* border: 2px solid red; */
+    width: 100%;
+}
+
+.welcome-section {
+    /* border: 2px solid orange; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 0;
+    padding: 0;
+}
+
+.welcome-section h1 {
+    font-family: "Bitcount Prop Single";
+    color: rgb(206, 175, 2);
+    font-size: 5.0rem;
+    margin: 0;
+    padding: 0;
+}
+
+.welcome-section h1:hover {
+    font-family: "Bitcount Prop Single";
+    color: rgb(255, 238, 144);
+    font-size: 5.2rem;
+    text-decoration: underline;
+    margin: 0;
+    padding: 0;
+}
+
+
+.welcome-section h2 {
+    font-family: "Bitcount Prop Single";
+    color: rgb(206, 175, 2);
+    font-size: 2.0rem;
+    margin: 0;
+    padding: 0;
+}
+
+.welcome-section h3 {
+    font-family: "Bitcount Prop Single";
+    color: rgb(206, 175, 2);
+    font-size: 1.5rem;
+    margin: 0;
+    padding: 0;
+}
+
+.random-section {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    /* border: 2px solid green; */
+}
+
+.random-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.3rem;
+    margin: 2rem;
+    margin-bottom: 0;
+    padding: 0;
+    border: 0.5rem solid rgb(206, 175, 2);
+    width: 70%;
+}
+
+.random-content h1, .random-content h2 {
+    margin: 0;
+    padding: 0;
+}
+
+.random-picks-section {
+    display: flex;
+    flex-direction: row;
+    border: 2px solid pink;
+    width: 90%;
+    align-items: center;
+    justify-content: center;
+}
+
+.random-anime, .random-manga {
+    border: 0.2rem solid rgb(206, 175, 2);
+}
+
+.randomAnimeImg, .randomMangaImg {
+    height: 15rem;
+    width: 12rem;
+    /* border: 2px solid red; */
+}
 
 
 /* ------------- Browse --------------*/
