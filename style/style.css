@@ -13,10 +13,14 @@ input, select, option, textarea {
     color: black;
 }
 
+legend {
+    font-size: 2vw;
+}
+
 h1 {
     font-family: "Bitcount Prop Single";
     color: rgb(206, 175, 2);
-    font-size: 4vw;
+    font-size: 4.5vw;
 }
 
 h2 {
@@ -42,6 +46,11 @@ button {
     justify-content: center;
     margin-left: 1%;
 }
+
+label {
+    font-size: 2vw;
+}
+
 
 /* ---------- Header -------------- */
 .header {
@@ -246,8 +255,9 @@ button {
     width: 100%;
     display: flex;
     flex-direction: row;
-    /* border: 2px solid orange; */
+    /* border: 2px solid rgb(255, 0, 140); */
     height: 100%;
+    gap: 2vw;
 }
 
 .topAnime-section, .topManga-section {
@@ -255,49 +265,58 @@ button {
     display: flex;
     flex-direction: row;
     justify-content: center;
-    width: 100%;
+}
+
+.topAnime-section {
+    width: 50%;
+}
+
+.topManga-section {
+    width: 50%;
 }
 
 .topAnime-content, .topManga-content {
     /* border: 2px solid greenyellow; */
-    width: 90%;
+    width: 95%;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
 .topAnimeTable, .topMangaTable {
-    border: solid rgb(206, 175, 2) 0.3rem;
+    width: 100%;
+    border: solid rgb(206, 175, 2) 0.6vw;
 }
 
 .topHeaderTable th, .topBodyTable td {
-    border: solid rgb(206, 175, 2) 0.2rem;
+    border: solid rgb(206, 175, 2) 0.3vw;
+    font-size: 1vw;
 }
 
 .topHeaderTable th {
     color: rgb(206, 175, 2);
-    font-size: 2rem;
+    font-size: 2vw;
 }
 
 .topBodyTable td {
-    font-size: 1rem;
+    font-size: 1.5vw;
     text-align: center;
 }
 
 .topTableRow {
-    max-height: 15rem;
+    max-height: 15vw;
 }
 
 .topTableRow td {
-    height: 8rem;
+    height: 8vw;
+    font-size: 1.4vw;
 }
 
 .animeCover, .mangaCover {
-    height: 15rem;
-    width: 12rem;
+    height: 16vw;
+    width: 12vw;
     /* border: 2px solid red; */
 }
-
 
 /* ---------- My Stuff --------------- */
 
@@ -305,7 +324,7 @@ button {
     display: flex;
     flex-direction: row;
     align-content: center;
-    gap: 1.5rem;
+    gap: 1.5vw;
     /* border: red solid 2px; */
 }
 
@@ -315,28 +334,33 @@ button {
 }
 
 #addContent, #deleteAllContent {
-    border: rgb(206, 175, 2) solid 0.2rem;
-    border-radius: 0.7rem;
+    border: rgb(206, 175, 2) solid 0.5vw;
+    border-radius: 1vw;
     background-color: rgb(5, 5, 192);
     color: white;
-    padding: 0.4rem;
-    font-size: 0.8rem;
+    padding: 1vw;
+    font-size: 1.5vw;
 }
 
 #addContent:hover, #deleteAllContent:hover {
     text-decoration: underline;
     background-color: rgb(76, 76, 221);
-    font-size: 0.75rem;
+    font-size: 1.2vw;
 }
 
 .myStuffTable {
-    width: 100%;
-    border: solid rgb(206, 175, 2) 0.2rem;
+    width: 100%;    
+    border: solid rgb(206, 175, 2) 0.5vw;
 }
 
 .myStuffTable th, .myStuffTable td {
-    border: solid rgb(206, 175, 2) 0.15rem;
+    border: solid rgb(206, 175, 2) 0.2vw;
     text-align: center;
+    font-size: 2vw;
+}
+
+.delTableContent {
+    font-size: 1.5vw;
 }
 
 .myStuffTableBody {
@@ -349,12 +373,13 @@ button {
 }
 
 #filterContent, #filterReset {
-    border: rgb(206, 175, 2) solid 0.2rem;
-    border-radius: 0.7rem;
+    border: rgb(206, 175, 2) solid 0.5vw;
+    border-radius: 0.7vw;
     background-color: rgb(5, 5, 192);
     color: white;
-    padding: 0.4rem 1rem 0.4rem 1rem;
-    font-size: 0.8rem;
+    padding: 1vw 1.5vw 1vw 1.5vw;
+    font-size: 1.5vw;
+    text-align: center;
 }
 
 .filter-btn-section {
@@ -362,25 +387,44 @@ button {
     display: flex;
     flex-direction: row;
     justify-content: right;
-    margin-top: 0.5rem;
-    gap: 0.5rem;
+    margin-top: 1vw;
+    gap: 1vw;
 }
 
 .legend-filters {
+    font-size: 3vw;
     color: rgb(206, 175, 2);
 }
 
 .fieldset-filters {
-    border: 2px solid rgb(206, 175, 2);
+    border: 0.5vw solid rgb(206, 175, 2);
 }
-
 
 .fieldset-type, .fieldset-categories {
-    border: 2px solid  rgb(5, 5, 192);
+    border: 0.5vw solid  rgb(5, 5, 192);
 }
+
+.filterInput {
+    height: 1.5vw;
+    width: 1.5vw;
+}
+
+.table-section {
+    /* border: 2px solid red; */
+    width: 100%;
+}
+
+.tanime-box, .tmanga-box {
+    /* border: 2px solid greenyellow; */
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
 
 
 /* --------- addContentForm ----------- */
+
 
 .err-message {
     color: red;
@@ -391,11 +435,52 @@ button {
 }
 
 #back-button {
-    margin-top: 1rem;
-    border: rgb(206, 175, 2) solid 0.2rem;
-    border-radius: 0.3rem;
+    border: rgb(206, 175, 2) solid 0.3vw;
+    border-radius: 1vw;
     background-color: rgb(5, 5, 192);
     color: white;
-    padding: 0.4rem;
-    font-size: 0.8rem;
+    padding: 0.5vw 1vw 0.5vw 1vw;
+    font-size: 1.5vw;
+    text-align: center;
+    margin-top: 1vw;
+}
+
+.addContentFieldset {
+    border: 0.5vw solid  rgb(5, 5, 192);
+    border-radius: 1vw;
+}
+
+.addTitleInput {
+    width: 50vw;
+    height: 2vw;
+}
+
+.addTypeInput {
+    height: 1.5vw;
+    width: 1.5vw;
+}
+
+.addStatusInput {
+    width: 20vw;
+    height: 3vw;
+    font-size: 1.5vw;
+}
+
+.addGenreInput {
+    height: 1.5vw;
+    width: 1.5vw;
+}
+
+.addRatingInput {
+    width: 5vw;
+    height: 1.5vw;
+}
+
+.addCommentsInput {
+    width: 80vw;
+    height: 10vw;
+}
+
+.addSubmit, .addReset {
+    font-size: 1.5vw;
 }

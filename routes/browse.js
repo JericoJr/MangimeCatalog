@@ -18,7 +18,7 @@ async function topAnimeList() {
             let genresArr = anime.genres;
             let str_genres = genresArr.map(genre => genre.name).join(", ");
             list += 
-            `<tr class="TopTableRow"> 
+            `<tr class="topTableRow"> 
             <td>${count = count + 1}</td> 
             <td class="td-animeCover"><img class="animeCover" src="${anime.images.jpg.large_image_url}"></td> 
             <td>${anime.title_english || anime.title}</td> 
@@ -52,7 +52,7 @@ async function topMangaList() {
             <td>${manga.status}</td> 
             </tr>`;
         })
-        // list +=  `<tr><td colspan="5">End</td></tr>`;
+        // list += `<tr><td colspan="5">End</td></tr>`;
         return list;
     } catch(error) {
         console.log("\nError fetching manga:", error);

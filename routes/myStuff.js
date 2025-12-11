@@ -86,7 +86,7 @@ async function getTable(type, sortFilter) {
                 <col style="width: 8%">  
                 <col style="width: 1%">
                 <col style="width: 25%"> 
-                <col style="width: 25%"> 
+                <col style="width: 15%"> 
             </colgroup>`;
     table += `<thead> <tr> <th>#</th> <th>Title</th> <th>Type</th> <th>Genre</th> <th>Status</th> <th>Rating</th> <th>Comments</th> <th></th></tr> <thead>`;
     try {
@@ -117,7 +117,7 @@ async function getTable(type, sortFilter) {
         let tableEntries = "";
         let count = 0;
         animeData.forEach( content => {
-            tableEntries += `<tr> <td>${++count}</td> <td>${content.title}</td> <td>${content.type}</td> <td>${content.genre}</td> <td>${content.status}</td> <td>${content.rating}</td> <td>${content.comments}</td> <th> <form action="myStuff/delContent" method="POST"> <input type="hidden" name="contentID" value="${content._id}"> <input type="hidden" name="contentType" value="${type}"> <button type="submit">Delete</button> </form> </th> </tr>`;
+            tableEntries += `<tr> <td>${++count}</td> <td>${content.title}</td> <td>${content.type}</td> <td>${content.genre}</td> <td>${content.status}</td> <td>${content.rating}</td> <td>${content.comments}</td> <th> <form action="myStuff/delContent" method="POST"> <input type="hidden" name="contentID" value="${content._id}"> <input type="hidden" name="contentType" value="${type}"> <button class="delTableContent" type="submit">Delete</button> </form> </th> </tr>`;
         });
         if (tableEntries === "") {
             table += `<tbody class="myStuffTableBody"> <tr> <td colspan="8">None</td> </tr> </tbody>`;
