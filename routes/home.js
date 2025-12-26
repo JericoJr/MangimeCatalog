@@ -11,7 +11,7 @@ router.get("/", async (request, response) => {
      while (randManga === "Data Error") {
         randManga = await randomContent("Manga");
     }
-    response.render("home", {randomAnime: randAnime, randomManga: randManga})
+    response.render("home", {randomAnime: randAnime, randomManga: randManga});
 });
 
 

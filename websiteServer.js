@@ -10,6 +10,7 @@ const bodyParser = require("body-parser");
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
+const login = require("./routes/login")
 const home = require("./routes/home");
 const browse = require("./routes/browse");
 const myStuff = require("./routes/myStuff");
@@ -20,7 +21,8 @@ app.set('view engine', 'ejs');
 app.set('views', './templates'); 
 
 app.use(express.static('style'));
-app.use("/", home);
+app.use("/", login);
+app.use("/home", home)
 app.use("/browse", browse);
 app.use("/myStuff", myStuff);
 app.use("/addContent", addContent);
