@@ -13,6 +13,11 @@ router.post("/login/submit", async (request, response) => {
     if (emailResult) {
         const passResult = await checkPass(emailInput, passInput);
         if (passResult) {
+            const userResult = await getUser(emailInput, passInput);
+            request.session.user = {
+                name: userResult, 
+                email: emailInput
+            }
             response.redirect("/home");
         } else {
             response.render("login", {message: `<p class="login-error">Incorrect Password</p>`});
@@ -49,6 +54,23 @@ async function checkPass(emailInput, passInput) {
                 return true;
             } else {
                 return false;
+            }
+    } catch (err) {
+        console.error(err);
+        return false;
+    }
+}
+
+async function getUser(emailInput, passInput) {
+    try {
+        await mongoose.connect(process.env.MONGO_CONNECTION_STRING, { dbName: "contentDB"});
+            const collection = mongoose.connection.db.collection("users");
+            const result = await collection.findOne({email: emailInput, password: passInput});
+            console.log(`\nUser:  ${result}`);
+            if (result) {
+                return result.user;
+            } else {
+                return null;
             }
     } catch (err) {
         console.error(err);

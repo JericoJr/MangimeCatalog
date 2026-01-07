@@ -97,17 +97,17 @@ async function getTable(type, sortFilter) {
         //Sorts Database first according to sortFilter
         if (sortFilter !== "earliest") {
             if (sortFilter === "newest") {
-                data = await collection.find({}).sort({ _id: -1}).toArray();
+                data = await collection.find({user: request.session.user.email}).sort({ _id: -1}).toArray();
             } else if (sortFilter === "title-asc") {
-                data = await collection.find({}).sort({ title: 1}).toArray();
+                data = await collection.find({user: request.session.user.email}).sort({ title: 1}).toArray();
             } else if (sortFilter === "title-des") {
-                data = await collection.find({}).sort({ title: -1}).toArray();
+                data = await collection.find({user: request.session.user.email}).sort({ title: -1}).toArray();
             } else if (sortFilter === "status") {
-                data = await collection.find({}).sort({ status: 1}).toArray();
+                data = await collection.find({user: request.session.user.email}).sort({ status: 1}).toArray();
             } else if (sortFilter === "rating-asc") {
-                data = await collection.find({}).sort({ rating: 1}).toArray();
+                data = await collection.find({user: request.session.user.email}).sort({ rating: 1}).toArray();
             } else if (sortFilter === "rating-des") {
-                data = await collection.find({}).sort({ rating: -1}).toArray();
+                data = await collection.find({user: request.session.user.email}).sort({ rating: -1}).toArray();
             } 
         } else {
             data = await collection.find({}).toArray();

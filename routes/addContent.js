@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 
 //Schema for Anime, Manga
 const animeSchema = new mongoose.Schema({
+  user: String,
   title: String,
   type: String,
   status: String,
@@ -13,6 +14,7 @@ const animeSchema = new mongoose.Schema({
 });
 
 const mangaSchema = new mongoose.Schema({
+  user: String,
   title: String,
   type: String,
   status: String,
@@ -54,6 +56,7 @@ async function addToDB(request) {
     await mongoose.connect(process.env.MONGO_CONNECTION_STRING, { dbName: "contentDB"});
     if (request.body.type === "Anime") {
       await Anime.create({
+        user: request.session.user.email,
         title: request.body.title,
         type: "Anime",
         status: request.body.status,
@@ -64,6 +67,7 @@ async function addToDB(request) {
       console.log("\nAdded Anime to Database");
     } else {
       await Manga.create({
+        user: request.session.user.email,
         title: request.body.title,
         type: "Manga",
         status: request.body.status,

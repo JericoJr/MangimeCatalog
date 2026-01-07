@@ -8,12 +8,12 @@ router.get("/", async (request, response) => {
         randAnime = await randomContent("Anime");
     }
     let randManga = await randomContent("Manga");
-     while (randManga === "Data Error") {
+    while (randManga === "Data Error") {
         randManga = await randomContent("Manga");
     }
-    response.render("home", {randomAnime: randAnime, randomManga: randManga});
+    const user_session = request.session.user.name;
+    response.render("home", {randomAnime: randAnime, randomManga: randManga, user: user_session});
 });
-
 
 async function randomContent(type) {
     try {

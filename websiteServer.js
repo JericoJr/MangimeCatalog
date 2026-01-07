@@ -1,9 +1,18 @@
 const express = require("express"); /* Accessing express module */
 const app = express(); /* app is a request handler function */
+const session = require("express-session"); /* For sessions */
 const path = require("path");
 require("dotenv").config({
    path: path.resolve(__dirname, "credentialsDontPost/.env"),
 });
+
+app.use(
+  session({
+    resave: true,
+    saveUninitialized: false,
+    secret: process.env.SECRET_SESSION, // use .env for secret string
+  })
+);
 
 const nodemailer = require("nodemailer"); /*For sending mail*/
 const transporter = nodemailer.createTransport({
@@ -38,7 +47,6 @@ app.use("/home", home)
 app.use("/browse", browse);
 app.use("/myStuff", myStuff);
 app.use("/addContent", addContent);
-
 app.listen(portNumber);
 console.log(`Web server is running at http://localhost:${portNumber}`);
 process.stdout.write("Stop to shutdown the server: ");

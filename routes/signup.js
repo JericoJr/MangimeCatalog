@@ -19,7 +19,7 @@ router.get("/", (request, response) => {
 
 router.post("/submit", async (request, response) => {
     await addUser(request);
-    response.render("login");
+    response.redirect("/");
 });
 
 async function addUser(request) {
