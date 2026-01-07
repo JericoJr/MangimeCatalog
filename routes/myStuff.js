@@ -12,9 +12,10 @@ router.get("/", async (request, response) => {
         animeTable = JSON.parse(request.query.animeTable);
         mangaTable = JSON.parse(request.query.mangaTable);
     } else {
+        const email = request.session.user.email;
         //Note: earliest is default sort order
-        animeTable = await getTable("Anime", "earliest", request.session.user.email);
-        mangaTable = await getTable("Manga", "earliest", request);
+        animeTable = await getTable("Anime", "earliest", email);
+        mangaTable = await getTable("Manga", "earliest", email);
     }
    
     response.render("myStuff", {animeTable: animeTable, mangaTable: mangaTable});

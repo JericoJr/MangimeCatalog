@@ -114,12 +114,12 @@ label {
 .links-section nav a{
     font-family: "Bitcount Prop Single";
     color: rgb(206, 175, 2);
-    font-size: 3.9vw;
+    font-size: 3vw;
 }
 
 .links-section nav a:hover{
     color: rgb(255, 245, 186);
-    font-size: 3.8vw;
+    font-size: 2.8vw;
 }
 
 /* .header div {
