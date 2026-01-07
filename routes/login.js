@@ -18,6 +18,7 @@ router.post("/login/submit", async (request, response) => {
                 name: userResult, 
                 email: emailInput
             }
+            console.log(`Current Session: ${request.session.user.name}`)
             response.redirect("/home");
         } else {
             response.render("login", {message: `<p class="login-error">Incorrect Password</p>`});

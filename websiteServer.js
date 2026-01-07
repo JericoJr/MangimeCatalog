@@ -35,7 +35,7 @@ const home = require("./routes/home");
 const browse = require("./routes/browse");
 const myStuff = require("./routes/myStuff");
 const addContent = require("./routes/addContent");
-
+const account = require("./routes/account");
 
 app.set('view engine', 'ejs');
 app.set('views', './templates'); 
@@ -47,6 +47,7 @@ app.use("/home", home)
 app.use("/browse", browse);
 app.use("/myStuff", myStuff);
 app.use("/addContent", addContent);
+app.use("/account", account);
 app.listen(portNumber);
 console.log(`Web server is running at http://localhost:${portNumber}`);
 process.stdout.write("Stop to shutdown the server: ");

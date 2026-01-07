@@ -13,8 +13,8 @@ router.get("/", async (request, response) => {
         mangaTable = JSON.parse(request.query.mangaTable);
     } else {
         //Note: earliest is default sort order
-        animeTable = await getTable("Anime", "earliest");
-        mangaTable = await getTable("Manga", "earliest");
+        animeTable = await getTable("Anime", "earliest", request.session.user.email);
+        mangaTable = await getTable("Manga", "earliest", request);
     }
    
     response.render("myStuff", {animeTable: animeTable, mangaTable: mangaTable});
@@ -70,7 +70,7 @@ router.post("/deleteAll", async (request, response) => {
     response.redirect("/myStuff");
 });
 
-async function getTable(type, sortFilter) {
+async function getTable(type, sortFilter, email) {
     let idName;
     if (type === "Anime") {
         idName = "animeTable";
@@ -97,20 +97,20 @@ async function getTable(type, sortFilter) {
         //Sorts Database first according to sortFilter
         if (sortFilter !== "earliest") {
             if (sortFilter === "newest") {
-                data = await collection.find({user: request.session.user.email}).sort({ _id: -1}).toArray();
+                data = await collection.find({user: email}).sort({ _id: -1}).toArray();
             } else if (sortFilter === "title-asc") {
-                data = await collection.find({user: request.session.user.email}).sort({ title: 1}).toArray();
+                data = await collection.find({user: email}).sort({ title: 1}).toArray();
             } else if (sortFilter === "title-des") {
-                data = await collection.find({user: request.session.user.email}).sort({ title: -1}).toArray();
+                data = await collection.find({user: email}).sort({ title: -1}).toArray();
             } else if (sortFilter === "status") {
-                data = await collection.find({user: request.session.user.email}).sort({ status: 1}).toArray();
+                data = await collection.find({user: email}).sort({ status: 1}).toArray();
             } else if (sortFilter === "rating-asc") {
-                data = await collection.find({user: request.session.user.email}).sort({ rating: 1}).toArray();
+                data = await collection.find({user: email}).sort({ rating: 1}).toArray();
             } else if (sortFilter === "rating-des") {
-                data = await collection.find({user: request.session.user.email}).sort({ rating: -1}).toArray();
+                data = await collection.find({user: email}).sort({ rating: -1}).toArray();
             } 
         } else {
-            data = await collection.find({}).toArray();
+            data = await collection.find({user: email}).toArray();
         }
         
         //Get data from database and formats each data and its field as a table row

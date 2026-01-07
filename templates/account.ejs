@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account</title>
+    <link rel="stylesheet" href="/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Bitcount+Prop+Single:wght@100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="header">
+        <div class="title-section">
+            <h1 class="website-name">Mangime Catalog</h1>
+        </div>
+        <div class="links-section">
+            <nav>
+                <a href="/home">Home</a>
+                <a href="/browse">Browse</a>
+                <a href="/myStuff">MyStuff</a>
+                <a href="/account">Account</a>
+            </nav>
+        </div>
+    </div>
+    <div class="body-content">
+        <h1>Account</h1>
+        <div>
+            <h3>User: <%-user%></h3>
+            <h3>Email: <%-email%></h3>
+            <form action="/account/signout" method="POST">
+                <input type="submit" value="Sign Out">
+            </form>
+        </div>
+    </div>
+</body>
+</html>l>
