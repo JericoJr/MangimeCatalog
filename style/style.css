@@ -51,6 +51,11 @@ label {
     font-size: 2vw;
 }
 
+/* ---------- Login --------------- */
+
+.login-error {
+    color: red;
+}
 
 /* ---------- Header -------------- */
 .header {
@@ -424,7 +429,6 @@ label {
 
 
 /* --------- addContentForm ----------- */
-
 
 .err-message {
     color: red;

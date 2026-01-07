@@ -92,31 +92,31 @@ async function getTable(type, sortFilter) {
     try {
         await mongoose.connect(process.env.MONGO_CONNECTION_STRING, { dbName: "contentDB"});
         let collectionName = (type === "Anime" ? "animes":"mangas");
-        const animeCollection = mongoose.connection.db.collection(collectionName);
-        let animeData; 
+        const collection = mongoose.connection.db.collection(collectionName);
+        let data; 
         //Sorts Database first according to sortFilter
         if (sortFilter !== "earliest") {
             if (sortFilter === "newest") {
-                animeData = await animeCollection.find({}).sort({ _id: -1}).toArray();
+                data = await collection.find({}).sort({ _id: -1}).toArray();
             } else if (sortFilter === "title-asc") {
-                animeData = await animeCollection.find({}).sort({ title: 1}).toArray();
+                data = await collection.find({}).sort({ title: 1}).toArray();
             } else if (sortFilter === "title-des") {
-                animeData = await animeCollection.find({}).sort({ title: -1}).toArray();
+                data = await collection.find({}).sort({ title: -1}).toArray();
             } else if (sortFilter === "status") {
-                animeData = await animeCollection.find({}).sort({ status: 1}).toArray();
+                data = await collection.find({}).sort({ status: 1}).toArray();
             } else if (sortFilter === "rating-asc") {
-                animeData = await animeCollection.find({}).sort({ rating: 1}).toArray();
+                data = await collection.find({}).sort({ rating: 1}).toArray();
             } else if (sortFilter === "rating-des") {
-                animeData = await animeCollection.find({}).sort({ rating: -1}).toArray();
+                data = await collection.find({}).sort({ rating: -1}).toArray();
             } 
         } else {
-            animeData = await animeCollection.find({}).toArray();
+            data = await collection.find({}).toArray();
         }
         
         //Get data from database and formats each data and its field as a table row
         let tableEntries = "";
         let count = 0;
-        animeData.forEach( content => {
+        data.forEach( content => {
             tableEntries += `<tr> <td>${++count}</td> <td>${content.title}</td> <td>${content.type}</td> <td>${content.genre}</td> <td>${content.status}</td> <td>${content.rating}</td> <td>${content.comments}</td> <th> <form action="myStuff/delContent" method="POST"> <input type="hidden" name="contentID" value="${content._id}"> <input type="hidden" name="contentType" value="${type}"> <button class="delTableContent" type="submit">Delete</button> </form> </th> </tr>`;
         });
         if (tableEntries === "") {

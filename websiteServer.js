@@ -1,16 +1,27 @@
-
 const express = require("express"); /* Accessing express module */
 const app = express(); /* app is a request handler function */
 const path = require("path");
 require("dotenv").config({
    path: path.resolve(__dirname, "credentialsDontPost/.env"),
 });
+
+const nodemailer = require("nodemailer"); /*For sending mail*/
+const transporter = nodemailer.createTransport({
+    service: "gmail",
+    auth: {
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS
+    }
+});
+module.exports = transporter;
+
 const portNumber = 2000;
 const bodyParser = require("body-parser");
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
-const login = require("./routes/login")
+const login = require("./routes/login");
+const signup = require("./routes/signup")
 const home = require("./routes/home");
 const browse = require("./routes/browse");
 const myStuff = require("./routes/myStuff");
@@ -22,12 +33,11 @@ app.set('views', './templates');
 
 app.use(express.static('style'));
 app.use("/", login);
+app.use("/signup", signup);
 app.use("/home", home)
 app.use("/browse", browse);
 app.use("/myStuff", myStuff);
 app.use("/addContent", addContent);
-
-
 
 app.listen(portNumber);
 console.log(`Web server is running at http://localhost:${portNumber}`);

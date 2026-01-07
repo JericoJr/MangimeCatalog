@@ -14,12 +14,14 @@
             <form action="/login/submit" method="POST">
                 <fieldset>
                     <label>Email:<input type="email" name="email" required></label> <br>
-                    <label>Password: <input type="text" name="password" required></label> <br>
+                    <label>Password: <input type="password" name="password" required></label> <br>
                     <input class="reset" type="reset">
                     <input class="submit" type="submit" value="login">
-                    <a class="signup" bref="/signup">Sign Up</a>
                 </fieldset>
             </form>
+            <a class="signup" href="/signup">Sign Up</a>
+            <br>
+            <%- message %>
         </div>
     </div>
 </body>
