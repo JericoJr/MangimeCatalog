@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forgot Password</title>
+    <link rel="stylesheet" href="/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Bitcount+Prop+Single:wght@100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="forgot-page">
+        <div class="forgot-content">
+            <h1>Forgot Password</h1>
+            <a href="/" class="back-section">
+                <button id="backLogin-button">back</button>
+             </a>  
+            <form action="/forgot/sendCode" method="POST">
+                <fieldset class="code-fieldset">
+                    <label>Email:<input class="forgot-email" type="email" name="email" required></label> <br>
+                    <div class="code-buttons">
+                        <input class="code-reset" type="reset">
+                        <input class="code-submit" type="submit" value="Send Code">
+                    </div>
+                </fieldset>
+            </form>
+            <br>
+            <%- change %>
+            <%- message %>
+        </div>
+    </div>
+</body>
+</html>

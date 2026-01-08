@@ -2,7 +2,6 @@ const express = require('express');
 const router = express.Router();
 const mongoose = require("mongoose");
 
-// const transporter = require("../config/mailer");
 
 const userSchema = new mongoose.Schema({
   email: String,

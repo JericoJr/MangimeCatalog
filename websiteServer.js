@@ -14,16 +14,6 @@ app.use(
   })
 );
 
-const nodemailer = require("nodemailer"); /*For sending mail*/
-const transporter = nodemailer.createTransport({
-    service: "gmail",
-    auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS
-    }
-});
-module.exports = transporter;
-
 const portNumber = 2000;
 const bodyParser = require("body-parser");
 
@@ -36,6 +26,7 @@ const browse = require("./routes/browse");
 const myStuff = require("./routes/myStuff");
 const addContent = require("./routes/addContent");
 const account = require("./routes/account");
+const forgot = require("./routes/forgot");
 
 app.set('view engine', 'ejs');
 app.set('views', './templates'); 
@@ -48,6 +39,7 @@ app.use("/browse", browse);
 app.use("/myStuff", myStuff);
 app.use("/addContent", addContent);
 app.use("/account", account);
+app.use("/forgot", forgot)
 app.listen(portNumber);
 console.log(`Web server is running at http://localhost:${portNumber}`);
 process.stdout.write("Stop to shutdown the server: ");
