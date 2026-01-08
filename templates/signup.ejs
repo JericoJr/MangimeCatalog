@@ -8,18 +8,25 @@
     <link href="https://fonts.googleapis.com/css2?family=Bitcount+Prop+Single:wght@100..900&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div>
-        <h1>Sign Up</h1>
-        <div>
+    <div class="signup-page">
+        <div class="signup-content">
+            <h1>Sign Up</h1>
+            <a href="/" class="back-section">
+                <button id="backLogin-button">back</button>
+             </a>  
             <form action="/signup/submit" method="POST">
-                <fieldset>
-                    <label>Email:<input type="email" name="email" required></label> <br>
-                    <label>Username:<input type="text" name="user" required></label> <br>
-                    <label>Password: <input type="password" name="password" required></label> <br>
-                    <input class="reset" type="reset">
-                    <input class="submit" type="submit" value="Sign Up">
+                <fieldset class="signup-fieldset">
+                    <label>Email:<input class="signup-email" type="email" name="email" required></label> <br>
+                    <label>Username:<input class="signup-user" type="text" name="user" required></label> <br>
+                    <label>Password: <input class="signup-pass" type="password" name="password" required></label> <br>
+                    <div class="signup-buttons">
+                        <input class="signup-reset" type="reset">
+                        <input class="signup-submit" type="submit" value="Sign Up">
+                    </div>
                 </fieldset>
             </form>
+            <br>
+            <%- message %>
         </div>
     </div>
 </body>

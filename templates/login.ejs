@@ -8,18 +8,23 @@
     <link href="https://fonts.googleapis.com/css2?family=Bitcount+Prop+Single:wght@100..900&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div>
-        <h1>Login</h1>
-        <div>
+    <div class="login-page">
+        <div class="login-content">
+            <h1>Login</h1>
             <form action="/login/submit" method="POST">
-                <fieldset>
-                    <label>Email:<input type="email" name="email" required></label> <br>
-                    <label>Password: <input type="password" name="password" required></label> <br>
-                    <input class="reset" type="reset">
-                    <input class="submit" type="submit" value="login">
+                <fieldset class="login-fieldset">
+                    <label>Email: <input class="login-email" type="email" name="email" required></label> <br>
+                    <label>Password: <input class="login-password" type="password" name="password" required></label> <br>
+                    <div class="login-buttons">
+                        <input class="login-reset" type="reset">
+                        <input class="login-submit" type="submit" value="Login">
+                    </div>
+                    <div class="loginlinks-container">
+                        <a class="signup-link" href="/signup">Sign Up</a>
+                        <a class="forgot-link" href="/">Forgot Password?</a>
+                    </div>
                 </fieldset>
             </form>
-            <a class="signup" href="/signup">Sign Up</a>
             <br>
             <%- message %>
         </div>
