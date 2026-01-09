@@ -685,10 +685,12 @@ label {
 
 .err-message {
     color: red;
+    font-size: 2vw;
 }
 
 .succ-message {
-    color: green;
+    color: rgb(0, 255, 55);
+    font-size: 2vw;
 }
 
 #back-button {
@@ -743,4 +745,84 @@ label {
 
 .addSubmit, .addReset {
     font-size: 1.5vw;
+}
+
+/* -------- Account ----------- */
+
+.account-content {
+    margin-left: 2vw;
+    border: rgb(5, 5, 192) solid 0.5vw;
+    padding: 2vw;
+    border-radius: 2vw;
+    margin-bottom: 5vw;
+}
+
+.info {
+    display: flex;
+    flex-direction: column;
+    gap: 1vw;
+}
+
+.account-info {
+    font-size: 3vw;
+    font-weight: bold;
+    color: rgb(206, 175, 2);
+    font-family: "Bitcount Prop Single";
+}
+
+.change-btn {
+    border: rgb(206, 175, 2) solid 0.3vw;
+    border-radius: 1vw;
+    background-color: rgb(5, 5, 192);
+    color: white;
+    padding-left: 2vw;
+    padding-right: 2vw;
+    padding-top: 0.5vw;
+    padding-bottom: 0.5vw;
+    font-size: 1.2vw;
+    margin-top: 0.5vw;
+}
+
+.change-btn:hover {
+    text-decoration: underline;
+    background-color: rgb(76, 76, 221);
+    font-size: 1.1vw;
+}
+
+.signout-section {
+    margin-top: 2vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+}
+
+#signout-btn {
+    font-family: "Bitcount Prop Single";
+    font-size: 1.8vw;
+    border: 0.3vw solid rgb(137, 1, 1);
+    border-radius: 1vw;
+    padding-left: 1vw;
+    padding-right: 1vw;
+    padding-top: 0.5vw;
+    padding-bottom: 0.5vw;
+    color: rgb(137, 1, 1);
+    background-color: rgb(2, 2, 44);
+}
+
+#signout-btn:hover {
+    text-decoration: underline;
+    cursor: pointer;
+    color: rgb(255, 0, 0);
+     border: 0.3vw solid rgb(255, 0, 0);
+}
+
+.info-fieldset {
+    border-radius: 1vw;
+    padding: 1vw;
+}
+
+.change-user-section {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5vw;
 }

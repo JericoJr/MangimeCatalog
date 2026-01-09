@@ -23,13 +23,34 @@
     </div>
     <div class="body-content">
         <h1>Account</h1>
-        <div>
-            <h3>User: <%-user%></h3>
-            <h3>Email: <%-email%></h3>
-            <form action="/account/signout" method="POST">
-                <input type="submit" value="Sign Out">
-            </form>
+        <div class="account-content">
+            <div class="info">
+                <div class="info-email-section">
+                    <span class="account-info">Email: <%-email%></span>
+                </div>
+                <div class="info-user-section">
+                    <span class="account-info">User: <%-user%></span>
+                </div>
+                <div class="change-user-section">
+                    <form action="/account/changeUser" method="POST">
+                        <button type="submit" class="change-btn">Change User</button>
+                    </form>
+                    <%- userForm %>
+                </div>
+                <div class="change-pass-section">
+                    <form action="/account/changePassword" method="POST">
+                        <button type="submit" class="change-btn">Change Password</button>
+                    </form>
+                     <%- passwordForm %>
+                </div>
+                <%- message %>
+                <div class="signout-section">
+                    <form action="/account/signout" method="POST">
+                        <input id="signout-btn" type="submit" value="Sign Out">
+                    </form>
+                </div>
+            </div>  
         </div>
     </div>
 </body>
-</html>l>
+</html>
