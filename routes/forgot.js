@@ -2,15 +2,13 @@ const express = require('express');
 const router = express.Router();
 const transporter = require("../config/mailer");
 const mongoose = require("mongoose");
-let code;
-let userEmail;
 
 router.get("/", (request, response) => {
     response.render("forgot", {change: "", message: ""});
 });
 
 router.post("/sendCode", async (request, response) => {
-    userEmail = request.body.email;  
+    const userEmail = request.body.email;  
     const emailResult = await checkEmail(userEmail);
     if (!emailResult) {
         response.render("forgot", {change: "", message: `<p class="email-err">Email Not Found. Try Signing Up.</p>`});
@@ -35,6 +33,10 @@ router.post("/sendCode", async (request, response) => {
                     </fieldset>
                 </form>
             `;
+            request.session.temp = {
+                targetCode: code, 
+                email: userEmail
+            }
             response.render("forgot", {change: changeForm, message: ""});
         } catch (err) {
             console.error(err);
@@ -58,9 +60,15 @@ router.post("/change", async (request, response) => {
             </fieldset>
         </form>
     `;
-    if (inputCode == code) {
-        await changePassword(newPass);
-        response.render("forgot", {change: "", message: `<p class="code-succ">Password Successfully Changed. Log In.</p>`});
+    if (inputCode == request.session.temp.targetCode) {
+        await changePassword(newPass, request);
+        request.session.destroy(err => {
+            if (err) {
+                console.error(err);
+                response.render("forgot", {change: "", message: `<p class="code-err">Error with Changing Password. Try Again</p>`});
+            }
+            response.render("forgot", {change: "", message: `<p class="code-succ">Password Successfully Changed. Log In.</p>`});
+         });
     } else {
         response.render("forgot", {change: changeForm, message: `<p class="code-err">Wrong Code. Try Again.</p>`});
     }
@@ -84,11 +92,11 @@ async function checkEmail(emailInput) {
     }
 }
 
-async function changePassword(newPassword) {
+async function changePassword(newPassword, request) {
     try {
         await mongoose.connect(process.env.MONGO_CONNECTION_STRING, { dbName: "contentDB"});
         const collection = mongoose.connection.db.collection("users");
-        const result = await collection.updateOne({email: userEmail}, {$set: {password: newPassword}});
+        const result = await collection.updateOne({email: request.session.temp.email}, {$set: {password: newPassword}});
         return result;
     } catch (err) {
         console.error(err);
