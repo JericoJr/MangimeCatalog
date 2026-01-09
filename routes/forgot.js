@@ -13,7 +13,7 @@ router.post("/sendCode", async (request, response) => {
     if (!emailResult) {
         response.render("forgot", {change: "", message: `<p class="email-err">Email Not Found. Try Signing Up.</p>`});
     } else {
-        code = generateCode();
+        const code = generateCode();
         const message = `Here's your code: ${code}`;
         try {
             await transporter.sendMail({
