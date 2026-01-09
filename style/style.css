@@ -607,6 +607,7 @@ label {
 }
 
 .myStuffTable {
+    table-layout: fixed;
     width: 100%;    
     border: solid rgb(206, 175, 2) 0.5vw;
 }
@@ -679,6 +680,12 @@ label {
     flex-direction: column;
 }
 
+.comment-cell, .title-cell, .genre-cell {
+    max-width: 100%;
+    white-space: pre-wrap;      /* preserves user-entered newlines */
+    word-wrap: break-word;      /* legacy */
+    overflow-wrap: break-word;  /* modern */
+}
 
 
 /* --------- addContentForm ----------- */

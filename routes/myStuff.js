@@ -81,13 +81,13 @@ async function getTable(type, sortFilter, email) {
     let table = `<table class="myStuffTable" id="${idName}">`;
     table += `<colgroup>
                 <col style="width: 2%">   
-                <col style="width: 25%">   
-                <col style="width: 4%">  
                 <col style="width: 20%">   
-                <col style="width: 8%">  
-                <col style="width: 1%">
-                <col style="width: 25%"> 
-                <col style="width: 15%"> 
+                <col style="width: 7.5%">  
+                <col style="width: 18%">   
+                <col style="width: 10.5%">  
+                <col style="width: 8%">
+                <col style="width: 20%"> 
+                <col style="width: 14%"> 
             </colgroup>`;
     table += `<thead> <tr> <th>#</th> <th>Title</th> <th>Type</th> <th>Genre</th> <th>Status</th> <th>Rating</th> <th>Comments</th> <th></th></tr> <thead>`;
     try {
@@ -118,7 +118,7 @@ async function getTable(type, sortFilter, email) {
         let tableEntries = "";
         let count = 0;
         data.forEach( content => {
-            tableEntries += `<tr> <td>${++count}</td> <td>${content.title}</td> <td>${content.type}</td> <td>${content.genre}</td> <td>${content.status}</td> <td>${content.rating}</td> <td>${content.comments}</td> <th> <form action="myStuff/delContent" method="POST"> <input type="hidden" name="contentID" value="${content._id}"> <input type="hidden" name="contentType" value="${type}"> <button class="delTableContent" type="submit">Delete</button> </form> </th> </tr>`;
+            tableEntries += `<tr> <td>${++count}</td> <td class="title-cell">${content.title}</td> <td>${content.type}</td> <td class="genre-cell">${content.genre}</td> <td>${content.status}</td> <td>${content.rating}</td> <td class="comment-cell">${content.comments}</td> <th> <form action="myStuff/delContent" method="POST"> <input type="hidden" name="contentID" value="${content._id}"> <input type="hidden" name="contentType" value="${type}"> <button class="delTableContent" type="submit">Delete</button> </form> </th> </tr>`;
         });
         if (tableEntries === "") {
             table += `<tbody class="myStuffTableBody"> <tr> <td colspan="8">None</td> </tr> </tbody>`;
