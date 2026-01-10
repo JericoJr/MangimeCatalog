@@ -1,7 +1,7 @@
 const express = require("express"); /* Accessing express module */
 const app = express(); /* app is a request handler function */
 const session = require("express-session"); /* For sessions */
-const MongoStore = require("connect-mongo");
+const MongoStore = require("connect-mongo").default;
 const path = require("path");
 require("dotenv").config({
    path: path.resolve(__dirname, "credentialsDontPost/.env"),
