@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const transporter = require("../config/mailer");
+// const resend = require("../config/mailer");
 const mongoose = require("mongoose");
 
 router.get("/", (request, response) => {
@@ -16,12 +17,14 @@ router.post("/sendCode", async (request, response) => {
         const code = generateCode();
         const message = `Here's your code: ${code}`;
         try {
-            await transporter.sendMail({
-            from: `<${process.env.EMAIL_USER}>`,
-            to: userEmail,
-            subject: "MangimeCatalog: Change Password Code",
-            text: `${message}`
+            let result = await transporter.sendMail({
+                from: process.env.EMAIL_USER,  
+                to: userEmail,
+                subject: "MangimeCatalog: Change Password Code",
+                text: message
             });
+            console.log("Email sent result:", result);
+
             let changeForm = `
                 <form action="/forgot/change" method="POST">
                     <fieldset class="change-fieldset">
@@ -36,7 +39,7 @@ router.post("/sendCode", async (request, response) => {
             request.session.temp = {
                 targetCode: code, 
                 email: userEmail
-            }
+            };
             response.render("forgot", {change: changeForm, message: ""});
         } catch (err) {
             console.error(err);
@@ -80,7 +83,7 @@ async function checkEmail(emailInput) {
         await mongoose.connect(process.env.MONGO_CONNECTION_STRING, { dbName: "contentDB"});
             const collection = mongoose.connection.db.collection("users");
             const user = await collection.findOne({email: emailInput});
-            console.log(`\nEmail Found: ${user}`);
+            // console.log(`\nEmail Found: ${user}`);
             if (user) {
                 return true;
             } else {

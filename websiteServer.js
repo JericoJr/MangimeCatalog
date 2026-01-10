@@ -67,7 +67,7 @@ process.stdin.on('readable', () => {  /* on equivalent to addEventListener */
 			// Not using console.log as it adds a newline by default
 			process.stdout.write("Shutting down the server\n"); 
             process.exit(0);  /* exiting */
-        } else {
+    } else {
 			/* After invalid command, we cannot type anything else */
 			process.stdout.write(`Invalid command: ${command}`);
             process.stdout.write("\nStop to shutdown the server: ");
