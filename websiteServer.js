@@ -1,30 +1,30 @@
 const express = require("express"); /* Accessing express module */
 const app = express(); /* app is a request handler function */
 const session = require("express-session"); /* For sessions */
-const MongoStore = require("connect-mongo").default;
+// const MongoStore = require("connect-mongo");
 const path = require("path");
 require("dotenv").config({
    path: path.resolve(__dirname, "credentialsDontPost/.env"),
 });
 
-app.set("trust proxy", 1);
+// app.set("trust proxy", 1);
 app.use(
   session({
-    name: "sid",
-    secret: process.env.SECRET_SESSION,
-    resave: false,
+    // name: "sid",
+    // secret: process.env.SECRET_SESSION,
+    resave: true,
     saveUninitialized: false,
-    store: MongoStore.create({
-      mongoUrl: process.env.MONGO_CONNECTION_STRING,
-      dbName: "contentDB",
-      ttl: 10 * 60, // 10 minutes
-    }),
-    cookie: {
-      httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
-      sameSite: "lax",
-      maxAge: 10 * 60 * 1000,
-    },
+    // store: MongoStore.create({
+    //   mongoUrl: process.env.MONGO_CONNECTION_STRING,
+    //   dbName: "contentDB",
+    //   ttl: 10 * 60, // 10 minutes
+    // }),
+    // cookie: {
+    //   httpOnly: true,
+    //   secure: process.env.NODE_ENV === "production",
+    //   sameSite: "lax",
+    //   maxAge: 10 * 60 * 1000,
+    // },
   })
 );
 

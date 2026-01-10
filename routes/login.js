@@ -33,7 +33,7 @@ async function checkEmail(emailInput) {
         await mongoose.connect(process.env.MONGO_CONNECTION_STRING, { dbName: "contentDB"});
             const collection = mongoose.connection.db.collection("users");
             const user = await collection.findOne({email: emailInput});
-            console.log(`\nEmail Found: ${user}`);
+            // console.log(`\nEmail Found: ${user}`);
             if (user) {
                 return true;
             } else {
@@ -50,7 +50,7 @@ async function checkPass(emailInput, passInput) {
         await mongoose.connect(process.env.MONGO_CONNECTION_STRING, { dbName: "contentDB"});
             const collection = mongoose.connection.db.collection("users");
             const user = await collection.findOne({email: emailInput, password: passInput});
-            console.log(`\nPass Found: ${user}`);
+            // console.log(`\nPass Found: ${user}`);
             if (user) {
                 return true;
             } else {

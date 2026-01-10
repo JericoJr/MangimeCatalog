@@ -4,7 +4,7 @@ const router = express.Router();
 const mongoose = require("mongoose");
 
 router.get("/", async (request, response) => {
-    console.log("Entering myStuff Page");
+    // console.log("Entering myStuff Page");
     let animeTable;
     let mangaTable;
     //Checks for already exisiting table parameters
@@ -72,6 +72,7 @@ router.post("/deleteAll", async (request, response) => {
 });
 
 async function getTable(type, sortFilter, email) {
+    console.log(`Email: ${email}`);
     let idName;
     if (type === "Anime") {
         idName = "animeTable";
@@ -118,7 +119,7 @@ async function getTable(type, sortFilter, email) {
         let tableEntries = "";
         let count = 0;
         data.forEach( content => {
-            tableEntries += `<tr> <td>${++count}</td> <td class="title-cell">${content.title}</td> <td>${content.type}</td> <td class="genre-cell">${content.genre}</td> <td>${content.status}</td> <td>${content.rating}</td> <td class="comment-cell">${content.comments}</td> <th> <form action="myStuff/delContent" method="POST"> <input type="hidden" name="contentID" value="${content._id}"> <input type="hidden" name="contentType" value="${type}"> <button class="delTableContent" type="submit">Delete</button> </form> </th> </tr>`;
+            tableEntries += `<tr> <td>${++count}</td> <td class="title-cell">${content.title}</td> <td>${content.type}</td> <td class="genre-cell">${content.genre}</td> <td class="status-cell">${content.status}</td> <td>${content.rating}</td> <td class="comment-cell">${content.comments}</td> <th> <form action="myStuff/delContent" method="POST"> <input type="hidden" name="contentID" value="${content._id}"> <input type="hidden" name="contentType" value="${type}"> <button class="delTableContent" type="submit">Delete</button> </form> </th> </tr>`;
         });
         if (tableEntries === "") {
             table += `<tbody class="myStuffTableBody"> <tr> <td colspan="8">None</td> </tr> </tbody>`;

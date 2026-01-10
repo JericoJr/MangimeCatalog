@@ -680,7 +680,7 @@ label {
     flex-direction: column;
 }
 
-.comment-cell, .title-cell, .genre-cell {
+.comment-cell, .title-cell, .genre-cell, .status-cell {
     max-width: 100%;
     white-space: pre-wrap;      /* preserves user-entered newlines */
     word-wrap: break-word;      /* legacy */
