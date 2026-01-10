@@ -1,6 +1,6 @@
-                                                            Mangime Catalog
+                                                    Mangime Catalog
 
-App Description: Mangime is a personal digital library and journal website for browsing all anime and manga related content. 
+App Description: Mangime Catalog is a personal digital library and journal website for browsing all anime and manga related content. 
 ________________________________________________________________________________________________________________________________
 Features:
 
@@ -69,6 +69,12 @@ Deployment/Setup:
             EMAIL_PASS= ???
 
     d. Open Terminal and Start Server: "npm nodemon websiteServer.ks"
-    
+
         1d. Open browser and right click in terminal: "Web server is running at http://localhost:2000"
+________________________________________________________________________________________________________________________________
+Contact:
+
+Email: jericojrestrella@gmail.com   
+
+linkedIn: linkedin.com/in/jericojrestrella/
 
