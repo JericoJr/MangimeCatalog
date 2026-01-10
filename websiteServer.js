@@ -11,7 +11,7 @@ require("dotenv").config({
 app.use(
   session({
     // name: "sid",
-    // secret: process.env.SECRET_SESSION,
+    secret: process.env.SECRET_SESSION,
     resave: true,
     saveUninitialized: false,
     // store: MongoStore.create({
