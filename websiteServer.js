@@ -13,7 +13,7 @@ app.use(
     // name: "sid",
     secret: process.env.SECRET_SESSION,
     resave: true,
-    saveUninitialized: false,
+    saveUninitialized: true,
     // store: MongoStore.create({
     //   mongoUrl: process.env.MONGO_CONNECTION_STRING,
     //   dbName: "contentDB",

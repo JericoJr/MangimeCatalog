@@ -24,19 +24,20 @@ router.get("/", async (request, response) => {
 router.post("/filter", async (request, response) => {
     const type = request.body.filterType;
     const sortFilter = request.body.sortFilter;
+    const email = request.session.user.email;
     let animeTable;
     let mangaTable;
 
     if (type === "Both") {
-        animeTable = await getTable("Anime", sortFilter);
-        mangaTable = await getTable("Manga", sortFilter);
+        animeTable = await getTable("Anime", sortFilter, email);
+        mangaTable = await getTable("Manga", sortFilter, email);
     } else {
         if (type === "Anime") {
-            animeTable = await getTable("Anime", sortFilter);
-            mangaTable = await getTable("Manga", "earliest");
+            animeTable = await getTable("Anime", sortFilter, email);
+            mangaTable = await getTable("Manga", "earliest", email);
         } else {
-            animeTable = await getTable("Anime", "earliest");
-            mangaTable = await getTable("Manga", sortFilter);
+            animeTable = await getTable("Anime", "earliest", email);
+            mangaTable = await getTable("Manga", sortFilter, email);
         }
     }
     //convert tables into string for url
