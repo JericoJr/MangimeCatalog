@@ -76,5 +76,6 @@ Contact:
 
 Email: jericojrestrella@gmail.com   
 
-linkedIn: linkedin.com/in/jericojrestrella/
+linkedIn: https://www.linkedin.com/in/jericojrestrella/
+
 
