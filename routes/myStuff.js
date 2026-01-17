@@ -74,8 +74,15 @@ router.post("/editContent", async (request, response) => {
 router.post("/submitEdit", async(request, response) => {
     const clickedButton = request.body.editAction; // either "Cancel" or "Submit"
 
-    if (clickedButton === "Submit") {
-        console.log("changing content");
+    if (clickedButton === "Cancel") {
+        console.log("Cancel Editing");
+    } else {
+        const result = await editDataDB(request);
+        if (result) {
+            console.log("Successfully Edit Data");
+        } else {
+            console.log("Error with Edit Data");
+        }
     }
     response.redirect("/myStuff");
 })
@@ -252,6 +259,7 @@ async function editContent(typeContent, id) {
             <div class="edit-popup">
                 <form action="/myStuff/submitEdit" method="POST" class="editForm">
                     <label class="edit-Title">Edit Form:</label> <br>
+                    <input type="hidden" name="objectID" value="${id}"> 
                     <label>Title: <input type="text" class="editTitleInput" name="title" maxlength="75" value="${data.title}" required></label> <br>
                     <label>Type: 
                         ${typeSection}
@@ -288,6 +296,29 @@ async function editContent(typeContent, id) {
     } catch (err) {
       console.error(err);
       return;
+    }
+}
+
+async function editDataDB(request) {
+    try {
+        await mongoose.connect(process.env.MONGO_CONNECTION_STRING, { dbName: "contentDB"});
+        const objectID =  new mongoose.Types.ObjectId(request.body.objectID);
+        const contentCollection = (request.body.type === "Anime" ? mongoose.connection.db.collection("animes") : mongoose.connection.db.collection("mangas"));
+        await contentCollection.updateOne({_id: objectID}, {
+            $set: {
+                title: request.body.title,
+                type: request.body.type,
+                status: request.body.status,
+                genre: request.body.genre,
+                rating: request.body.rating,
+                comments: request.body.comments
+            }
+        });
+        mongoose.disconnect();
+        return true;
+    } catch (err) {
+        console.error(err);
+        return false;
     }
 }
 
