@@ -13,13 +13,19 @@ router.post("/login/submit", async (request, response) => {
     if (emailResult) {
         const passResult = await checkPass(emailInput, passInput);
         if (passResult) {
-            const userResult = await getUser(emailInput, passInput);
-            request.session.user = {
-                name: userResult, 
-                email: emailInput
+            try {
+                const userResult = await getUser(emailInput, passInput);
+                request.session.user = {
+                    name: userResult, 
+                    email: emailInput
+                }
+                // console.log(`Current Session: ${request.session.user.name}`)
+                response.redirect("/home");
+            } catch(err) {
+                console.log(`Login Error: ${err}`)
+                response.render("login", {message: `<p></p>`});
             }
-            // console.log(`Current Session: ${request.session.user.name}`)
-            response.redirect("/home");
+           
         } else {
             response.render("login", {message: `<p class="login-error">Incorrect Password</p>`});
         }
@@ -67,7 +73,7 @@ async function getUser(emailInput, passInput) {
         await mongoose.connect(process.env.MONGO_CONNECTION_STRING, { dbName: "contentDB"});
             const collection = mongoose.connection.db.collection("users");
             const result = await collection.findOne({email: emailInput, password: passInput});
-            console.log(`\nUser:  ${result}`);
+            // console.log(`\nUser:  ${result.user}`);
             if (result) {
                 return result.user;
             } else {

@@ -3,15 +3,20 @@ const router = express.Router();
 
 
 router.get("/", async (request, response) => {
-    let randAnime = await randomContent("Anime");
-    while (randAnime === "Data Error") {
-        randAnime = await randomContent("Anime");
-    }
-    let randManga = await randomContent("Manga");
-    while (randManga === "Data Error") {
-        randManga = await randomContent("Manga");
-    }
     const user_session = request.session.user.name;
+    if (!user_session) {
+        console.log("No session found — redirecting to login");
+        return res.redirect("/");
+    }
+
+    let randAnime = await randomContent("Anime");
+    // while (randAnime === "Data Error") {
+    //     randAnime = await randomContent("Anime");
+    // }
+    let randManga = await randomContent("Manga");
+    // while (randManga === "Data Error") {
+    //     randManga = await randomContent("Manga");
+    // }
     response.render("home", {randomAnime: randAnime, randomManga: randManga, user: user_session});
 });
 
@@ -24,6 +29,11 @@ async function randomContent(type) {
         } else {
             response = await fetch('https://api.jikan.moe/v4/recommendations/manga');
         }
+        if (!response.ok) {
+            console.log("API HTTP error:", response.status);
+            return `<p>Fail Retrieving in API</p>`; 
+        }
+                
         const result = await response.json();
         const data = result.data;
         if (!data || !Array.isArray(data) || data.length === 0) {

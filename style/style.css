@@ -597,13 +597,14 @@ label {
     background-color: rgb(5, 5, 192);
     color: white;
     padding: 1vw;
-    font-size: 1.5vw;
+    font-size: 1.4vw;
 }
 
 #addContent:hover, #deleteAllContent:hover {
     text-decoration: underline;
     background-color: rgb(76, 76, 221);
-    font-size: 1.2vw;
+    font-size: 1.35vw;
+    cursor: pointer;
 }
 
 .myStuffTable {
@@ -618,8 +619,18 @@ label {
     font-size: 2vw;
 }
 
-.delTableContent {
+.delTableContent, .editTableContent {
     font-size: 1.5vw;
+    border: solid rgb(206, 175, 2) 0.2vw;
+    background-color: rgb(5, 5, 192);
+    border-radius: 0.5vw;
+    color: white;
+    width: 8vw;
+}
+.delTableContent:hover, .editTableContent:hover {
+    cursor: pointer;
+    background-color: rgb(45, 45, 234);
+    border: solid rgb(255, 230, 88) 0.2vw;
 }
 
 .myStuffTableBody {
@@ -639,6 +650,13 @@ label {
     padding: 1vw 1.5vw 1vw 1.5vw;
     font-size: 1.5vw;
     text-align: center;
+}
+
+
+#filterContent:hover, #filterReset:hover {
+    border: rgb(237, 221, 129) solid 0.5vw;
+    background-color: rgb(76, 76, 228);
+    cursor: pointer;
 }
 
 .filter-btn-section {
@@ -686,6 +704,90 @@ label {
     word-wrap: break-word;      /* legacy */
     overflow-wrap: break-word;  /* modern */
 }
+
+.buttons-cell-section {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    margin-top: 0.5vw;
+    margin-bottom: 0.5vw;
+}
+
+.edit-popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    justify-content: center;
+    align-items: center;
+
+    display: flex;
+    flex-direction: column;
+    /* border: 2px solid red; */
+}
+
+.editForm {
+    border: 0.5vw solid rgb(206, 175, 2);
+    background-color: rgba(5, 5, 192, 0.8) ;
+    border-radius: 2vw;
+    padding-left: 2vw;
+    padding-top: 2vw;
+    padding-bottom: 2vw;
+    padding-right: 0vw;
+    width: 100%;
+}
+
+.edit-Title {
+    font-family: "Bitcount Prop Single";
+    color: rgb(206, 175, 2);
+    font-size: 3vw;
+}
+
+.editContentFieldset label {
+    font-size: 2vw;
+}
+
+.editTitleInput {
+    width: 35vw;
+    height: 2vw;
+    font-size: 1.5vw;
+}
+
+.editTypeInput {
+    height: 1.5vw;
+    width: 1.5vw;
+}
+
+.editStatusInput {
+    width: 20vw;
+    height: 3vw;
+    font-size: 1.5vw;
+}
+
+.editGenreInput {
+    height: 1.5vw;
+    width: 1.5vw;
+}
+
+.editRatingInput {
+    width: 5vw;
+    height: 1.5vw;
+    font-size: 1.5vw;
+}
+
+.editCommentsInput {
+    width: 40vw;
+    height: 10vw;
+    font-size: 1.5vw;
+}
+
+.editSubmit, .editReset, .editCancel {
+    font-size: 1.5vw;
+}
+
 
 
 /* --------- addContentForm ----------- */

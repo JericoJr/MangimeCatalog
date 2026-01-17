@@ -7,6 +7,7 @@ router.get("/", async (request, response) => {
     // console.log("Entering myStuff Page");
     let animeTable;
     let mangaTable;
+    let editForm;
     //Checks for already exisiting table parameters
     if (request.query.animeTable && request.query.mangaTable) {
         animeTable = JSON.parse(request.query.animeTable);
@@ -17,8 +18,13 @@ router.get("/", async (request, response) => {
         animeTable = await getTable("Anime", "earliest", email);
         mangaTable = await getTable("Manga", "earliest", email);
     }
-   
-    response.render("myStuff", {animeTable: animeTable, mangaTable: mangaTable});
+
+    if (request.query.editForm) {
+        editForm = JSON.parse(request.query.editForm);
+    } else {
+        editForm = null;
+    }
+    response.render("myStuff", {animeTable: animeTable, mangaTable: mangaTable, editForm: editForm});
 });
 
 router.post("/filter", async (request, response) => {
@@ -57,6 +63,23 @@ router.post("/delContent", async (request, response) => {
     response.redirect("/myStuff");
 });
 
+router.post("/editContent", async (request, response) => {
+    let ID = request.body.contentID;
+    let type = request.body.contentType;
+    let editForm = await editContent(type, ID);
+    const editFormEnc = encodeURIComponent(JSON.stringify(editForm));
+    response.redirect(`/myStuff?editForm=${editFormEnc}`);
+});
+
+router.post("/submitEdit", async(request, response) => {
+    const clickedButton = request.body.editAction; // either "Cancel" or "Submit"
+
+    if (clickedButton === "Submit") {
+        console.log("changing content");
+    }
+    response.redirect("/myStuff");
+})
+
 router.post("/deleteAll", async (request, response) => {
     try {
         await mongoose.connect(process.env.MONGO_CONNECTION_STRING, { dbName: "contentDB"});
@@ -73,7 +96,7 @@ router.post("/deleteAll", async (request, response) => {
 });
 
 async function getTable(type, sortFilter, email) {
-    console.log(`Email: ${email}`);
+    // console.log(`Email: ${email}`);
     let idName;
     if (type === "Anime") {
         idName = "animeTable";
@@ -86,10 +109,10 @@ async function getTable(type, sortFilter, email) {
                 <col style="width: 20%">   
                 <col style="width: 7.5%">  
                 <col style="width: 18%">   
-                <col style="width: 10.5%">  
+                <col style="width: 12.5%">  
                 <col style="width: 8%">
                 <col style="width: 20%"> 
-                <col style="width: 14%"> 
+                <col style="width: 12%"> 
             </colgroup>`;
     table += `<thead> <tr> <th>#</th> <th>Title</th> <th>Type</th> <th>Genre</th> <th>Status</th> <th>Rating</th> <th>Comments</th> <th></th></tr> <thead>`;
     try {
@@ -120,7 +143,26 @@ async function getTable(type, sortFilter, email) {
         let tableEntries = "";
         let count = 0;
         data.forEach( content => {
-            tableEntries += `<tr> <td>${++count}</td> <td class="title-cell">${content.title}</td> <td>${content.type}</td> <td class="genre-cell">${content.genre}</td> <td class="status-cell">${content.status}</td> <td>${content.rating}</td> <td class="comment-cell">${content.comments}</td> <th> <form action="myStuff/delContent" method="POST"> <input type="hidden" name="contentID" value="${content._id}"> <input type="hidden" name="contentType" value="${type}"> <button class="delTableContent" type="submit">Delete</button> </form> </th> </tr>`;
+            tableEntries += `<tr>   
+                                    <td>${++count}</td> 
+                                    <td class="title-cell">${content.title}</td> 
+                                    <td>${content.type}</td> 
+                                    <td class="genre-cell">${content.genre}</td> 
+                                    <td class="status-cell">${content.status}</td> 
+                                    <td>${content.rating}</td> <td class="comment-cell">${content.comments}</td> 
+                                    <td class="buttons-cell"> 
+                                        <div class="buttons-cell-section">
+                                        <form action="/myStuff/editContent" method="POST"> <input type="hidden" name="contentID" value="${content._id}"> 
+                                            <input type="hidden" name="contentType" value="${type}"> 
+                                            <button class="editTableContent" type="submit">Edit</button> 
+                                        </form> 
+                                        <form action="/myStuff/delContent" method="POST"> <input type="hidden" name="contentID" value="${content._id}"> 
+                                            <input type="hidden" name="contentType" value="${type}"> 
+                                            <button class="delTableContent" type="submit">Delete</button> 
+                                        </form> 
+                                        </div>
+                                    </td>
+                            </tr>`;
         });
         if (tableEntries === "") {
             table += `<tbody class="myStuffTableBody"> <tr> <td colspan="8">None</td> </tr> </tbody>`;
@@ -163,4 +205,90 @@ async function delMangaContent(id) {
     }
     return;
 }
+
+async function editContent(typeContent, id) {
+    try {
+        const objectID = new mongoose.Types.ObjectId(id);
+        console.log(`Editing Anime - ${id}`);
+        await mongoose.connect(process.env.MONGO_CONNECTION_STRING, { dbName: "contentDB"});
+        const contentCollection = (typeContent === "Anime" ? mongoose.connection.db.collection("animes") : mongoose.connection.db.collection("mangas"));
+        const data = await contentCollection.findOne({_id: objectID});
+
+        let typeSection;
+        if (typeContent === "Anime") {
+            typeSection = `
+                <label> <input type="radio" class="editTypeInput" name="type" value="Manga"> Manga </label>
+                <label> <input type="radio" class="editTypeInput" name="type" value="Anime" checked required> Anime </label>
+            `;
+        } else{
+            typeSection = `
+                <label> <input type="radio" class="editTypeInput" name="type" value="Manga" checked required> Manga </label>
+                <label> <input type="radio" class="editTypeInput" name="type" value="Anime"> Anime </label>
+            `;
+        }
+
+        let statusSection;
+        if (data.status === "Completed") {
+            statusSection = `
+                <option class="editStatusInputOp" value="Completed" selected>Completed</option>
+                <option class="editStatusInputOp" value="Reading/Watching">Reading/Watching</option>
+                <option class="editStatusInputOp" value="Waitlist">Waitlist</option>
+            `;
+        } else if (data.status === "Reading/Watching") {
+            statusSection = `
+                <option class="editStatusInputOp" value="Completed">Completed</option>
+                <option class="editStatusInputOp" value="Reading/Watching" selected>Reading/Watching</option>
+                <option class="editStatusInputOp" value="Waitlist">Waitlist</option>
+            `;
+        } else {
+            statusSection = `
+                <option class="editStatusInputOp" value="Completed">Completed</option>
+                <option class="editStatusInputOp" value="Reading/Watching">Reading/Watching</option>
+                <option class="editStatusInputOp" value="Waitlist" selected>Waitlist</option>
+            `;
+        }
+
+        let editForm = `
+            <div class="edit-popup">
+                <form action="/myStuff/submitEdit" method="POST" class="editForm">
+                    <label class="edit-Title">Edit Form:</label> <br>
+                    <label>Title: <input type="text" class="editTitleInput" name="title" maxlength="75" value="${data.title}" required></label> <br>
+                    <label>Type: 
+                        ${typeSection}
+                    </label> <br>  
+                    <label>Status: </label>   
+                    <select name="status" class="editStatusInput" required>
+                        ${statusSection}
+                    </select> <br>     
+                    <label>Genre: </label> <br>
+                    <label><input type="checkbox" class="editGenreInput" name="genre" value="Action" ${data.genre.includes("Action") ? "checked" : ""}>Action</label>
+                    <label><input type="checkbox" class="editGenreInput" name="genre" value="Adventure" ${data.genre.includes("Adventure") ? "checked" : ""}>Adventure</label>
+                    <label><input type="checkbox" class="editGenreInput" name="genre" value="Comedy" ${data.genre.includes("Comedy") ? "checked" : ""}>Comedy</label>
+                    <label><input type="checkbox" class="editGenreInput" name="genre" value="Drama" ${data.genre.includes("Drama") ? "checked" : ""}>Drama</label> <br>
+                    <label><input type="checkbox" class="editGenreInput" name="genre" value="Fantasy" ${data.genre.includes("Fantasy") ? "checked" : ""}>Fantasy</label>
+                    <label><input type="checkbox" class="editGenreInput" name="genre" value="Historical" ${data.genre.includes("Historical") ? "checked" : ""}>Historical</label>
+                    <label><input type="checkbox" class="editGenreInput" name="genre" value="Horror" ${data.genre.includes("Horror") ? "checked" : ""}>Horror</label>
+                    <label><input type="checkbox" class="editGenreInput" name="genre" value="Mystery" ${data.genre.includes("Mystery") ? "checked" : ""}>Mystery</label> <br>
+                    <label><input type="checkbox" class="editGenreInput" name="genre" value="Romance" ${data.genre.includes("Romance") ? "checked" : ""}>Romance</label>
+                    <label><input type="checkbox" class="editGenreInput" name="genre" value="Sci-Fi" ${data.genre.includes("Sci-Fi") ? "checked" : ""}>Sci-Fi</label>
+                    <label><input type="checkbox" class="editGenreInput" name="genre" value="Slice-Of-Life" ${data.genre.includes("Slice-Of-Life") ? "checked" : ""}>Slice Of Life</label>
+                    <br>
+                    <label>Rating: <input type="number" class="editRatingInput" name="rating" min="1" max="10" value="${data.rating}" required> out of 10</label> <br>
+                    <label>Comments:</label><br>
+                    <label><textarea class="editCommentsInput" rows="10" cols="20" name="comments">${data.comments}</textarea></label>
+                    <br>
+                    <input class="editCancel" type="submit" name="editAction" value="Cancel">
+                    <input class="editReset" type="reset">
+                    <input class="editSubmit" type="submit" name="editAction" value="Submit">
+                </form>
+            </div>
+        `; 
+        mongoose.disconnect();
+        return editForm;
+    } catch (err) {
+      console.error(err);
+      return;
+    }
+}
+
 module.exports = router; 
