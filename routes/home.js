@@ -3,16 +3,20 @@ const router = express.Router();
 
 
 router.get("/", async (request, response) => {
+    const delay = ms => new Promise(res => setTimeout(res, ms));
+
     const user_session = request.session.user.name;
     if (!user_session) {
         console.log("No session found — redirecting to login");
         return res.redirect("/");
     }
-
+    
+    await delay(350);
     let randAnime = await randomContent("Anime");
     // while (randAnime === "Data Error") {
     //     randAnime = await randomContent("Anime");
     // }
+    await delay(350);
     let randManga = await randomContent("Manga");
     // while (randManga === "Data Error") {
     //     randManga = await randomContent("Manga");
