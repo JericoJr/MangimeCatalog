@@ -509,31 +509,72 @@ label {
 
 
 /* ------------- Browse --------------*/
-.top-section {
+.Browse-Pages {
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+}
+
+.Browse-Pages button {
+    font-size: 3vw;
+    font-family: "Bitcount Prop Single";
+    color: rgb(206, 175, 2);
+    background-color: transparent;
+    border: none;
+}
+
+.Browse-Pages button:hover {
+    cursor: pointer;
+    color: rgb(252, 236, 141);
+    text-decoration: underline;
+}
+
+.horizontal-line {
+    font-size: 3vw;
+    font-family: "Bitcount Prop Single";
+    color: rgb(206, 175, 2);
+}
+
+
+#top-section {
     width: 100%;
     display: flex;
     flex-direction: row;
-    /* border: 2px solid rgb(255, 0, 140); */
+    /* border: 2px solid rgb(166, 255, 0); */
     height: 100%;
     gap: 2vw;
 }
 
-.topAnime-section, .topManga-section {
-    /* border: 2px solid red; */
+#current-upcoming-section {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    /* border: 2px solid rgb(255, 153, 0); */
+    height: 100%;
+    gap: 2vw;
+}
+
+.topAnime-section, .topManga-section, .current-section, .upcoming-section {
+    /* border: 2px solid pink; */
     display: flex;
     flex-direction: row;
     justify-content: center;
+    box-sizing: border-box;
 }
 
-.topAnime-section {
+.current-title, .upcoming-title {
+    font-size: 3vw;
+}
+
+.topAnime-section, .current-section {
     width: 50%;
 }
 
-.topManga-section {
+.topManga-section, .upcoming-section {
     width: 50%;
 }
 
-.topAnime-content, .topManga-content {
+.topAnime-content, .topManga-content, .current-content, .upcoming-content {
     /* border: 2px solid greenyellow; */
     width: 95%;
     display: flex;
@@ -546,9 +587,20 @@ label {
     border: solid rgb(206, 175, 2) 0.6vw;
 }
 
+.currentTable, .upcomingTable {
+    width: 100%;
+    border: solid rgb(206, 175, 2) 0.6vw;
+}
+
+
 .topHeaderTable th, .topBodyTable td {
     border: solid rgb(206, 175, 2) 0.3vw;
     font-size: 1vw;
+}
+
+.currentHeaderTable th, .currentBodyTable td, .upcomingHeaderTable th, .upcomingBodyTable td{
+    border: solid rgb(206, 175, 2) 0.3vw;
+    font-size: 0.8vw;
 }
 
 .topHeaderTable th {
@@ -556,12 +608,23 @@ label {
     font-size: 2vw;
 }
 
+.currentHeaderTable th, .upcomingHeaderTable th {
+    color: rgb(206, 175, 2);
+    font-size: 1.5vw;
+}
+
+
 .topBodyTable td {
     font-size: 1.5vw;
     text-align: center;
 }
 
-.topTableRow {
+.currentBodyTable td, .upcomingBodyTable td {
+    font-size: 1.2vw;
+    text-align: center;
+}
+
+.topTableRow, .currentTableRow, .upcomingTableRow {
     max-height: 15vw;
 }
 
@@ -570,10 +633,19 @@ label {
     font-size: 1.4vw;
 }
 
+.currentTableRow td, .upcomingTableRow td {
+    height: 8vw;
+    font-size: 1vw;
+}
+
 .animeCover, .mangaCover {
     height: 16vw;
     width: 12vw;
     /* border: 2px solid red; */
+}
+
+.cu-animeCover {
+    object-fit: contain;
 }
 
 /* ---------- My Stuff --------------- */
@@ -698,7 +770,7 @@ label {
     flex-direction: column;
 }
 
-.comment-cell, .title-cell, .genre-cell, .status-cell {
+.comment-cell, .title-cell, .status-cell {
     max-width: 100%;
     white-space: pre-wrap;      /* preserves user-entered newlines */
     word-wrap: break-word;      /* legacy */
@@ -811,6 +883,12 @@ label {
     font-size: 1.5vw;
     text-align: center;
     margin-top: 1vw;
+}
+
+#back-button:hover {
+    border: rgb(237, 221, 126) solid 0.3vw;
+    background-color: rgb(77, 77, 252); 
+    cursor: pointer;
 }
 
 .addContentFieldset {

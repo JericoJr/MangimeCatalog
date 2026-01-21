@@ -24,7 +24,17 @@
     <div class="body-content">
         <div class="browse-section">
             <h1>Browse</h1>
-            <div class="top-section">
+            <div class="Browse-Pages">
+                <button id="Browse-Top"> Top </button>
+                <span class="horizontal-line"> | </span>
+                <button id="Browse-Current-Upcoming"> Current/Upcoming </button>
+                <span class="horizontal-line"> | </span>
+                <button id="Browse-Search"> Search </button>
+            </div>
+            <!--Pages-->
+
+            <!--Top-->
+            <div id="top-section">
                 <div class="topAnime-section">
                     <div class="topAnime-content">
                         <h2>Top Anime</h2>
@@ -47,7 +57,7 @@
                 </div>
                 <div class="topManga-section">
                     <div class="topManga-content">
-                        <h2>Top Manga</h2>
+                        <h2>Current Anime</h2>
                         <table class="topMangaTable">
                             <colgroup>
                                 <col style="width: 5%">   
@@ -66,9 +76,104 @@
                     </div>
                 </div>
             </div>
+
+            <!--Current/Upcoming-->
+            <div id="current-upcoming-section">
+                <div class="current-section">
+                    <div class="current-content">
+                        <h2 class="current-title">Current Season's Anime</h2>
+                        <table class="currentTable">
+                            <colgroup>
+                                <col style="width: 17%">   
+                                <col style="width: 25%">  
+                                <col style="width: 20%">   
+                                <col style="width: 18%">  
+                                <col style="width: 10%"> 
+                                <col style="width: 5%">    
+                            </colgroup>
+                            <thead class="currentHeaderTable">
+                                <tr>
+                                    <th class="currentImg"></th>
+                                    <th class="currentTitle">Title</th>
+                                    <th class="currentGenres">Genres</th>
+                                    <th class="currentStatus">Status</th>
+                                    <th class="currentScore">Score</th>
+                                    <th class="currentEpisodes">Episodes</th>
+                                </tr>
+                            </thead>
+                            <tbody class="currentBodyTable">
+                                <%- currentList %>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="upcoming-section">
+                    <div class="upcoming-content">
+                        <h2 class="upcoming-title">Upcoming Anime</h2>
+                        <table class="upcomingTable">
+                            <colgroup>
+                                <col style="width: 17%">   
+                                <col style="width: 25%">  
+                                <col style="width: 10%">   
+                                <col style="width: 20%">  
+                                <col style="width: 9%"> 
+                                <col style="width: 14%">    
+                            </colgroup>
+                            <thead class="upcomingHeaderTable">
+                                <tr>
+                                    <th class="upcomingImg"></th>
+                                    <th class="upcomingTitle">Title</th>
+                                    <th class="upcomingType">Type</th>
+                                    <th class="upcomingGenres">Genres</th>
+                                    <th class="upcomingSeason">Season</th>
+                                    <th class="upcomingTrailer">Trailer</th>
+                                </tr>
+                            </thead>
+                            <tbody class="upcomingBodyTable">
+                                <%- upcomingList %>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!--Search-->
+            <div id="search-section">
+                <p>SEARCH!</p>
+            </div>
         </div>
     </div>
     
-    
+    <script>
+        // This runs in the browser
+        document.addEventListener("DOMContentLoaded", () => {
+            const topBtn = document.getElementById("Browse-Top");
+            const cuBtn = document.getElementById("Browse-Current-Upcoming");
+            const searchBtn = document.getElementById("Browse-Search");
+
+            const topSection = document.getElementById("top-section");
+            const cuSection = document.getElementById("current-upcoming-section");
+            const searchSection = document.getElementById("search-section");
+
+
+            topBtn.addEventListener("click", () => {
+                topSection.style.display = "flex";
+                cuSection.style.display = "none";
+                searchSection.style.display = "none";
+            });
+
+            cuBtn.addEventListener("click", () => {
+                cuSection.style.display = "flex";
+                topSection.style.display = "none";
+                searchSection.style.display = "none";
+            });
+
+            searchBtn.addEventListener("click", () => {
+                searchSection.style.display = "flex";
+                cuSection.style.display = "none";
+                topSection.style.display = "none";
+            });
+        });
+    </script>
 </body>
 </html>

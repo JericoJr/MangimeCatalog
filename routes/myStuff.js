@@ -154,8 +154,15 @@ async function getTable(type, sortFilter, email) {
                                     <td>${++count}</td> 
                                     <td class="title-cell">${content.title}</td> 
                                     <td>${content.type}</td> 
-                                    <td class="genre-cell">${content.genre}</td> 
-                                    <td class="status-cell">${content.status}</td> 
+                                    <td class="genre-cell">
+                                        ${content.genre.map((genre, index) =>
+                                            index === content.genre.length - 1
+                                            ? genre
+                                            : `${genre},`
+                                        )
+                                        .join("<br>")}                                    
+                                    </td> 
+                                    <td class="status-cell">${content.status === "Reading/Watching" ? `Reading/<br>Watching`: content.status}</td> 
                                     <td>${content.rating}</td> <td class="comment-cell">${content.comments}</td> 
                                     <td class="buttons-cell"> 
                                         <div class="buttons-cell-section">
