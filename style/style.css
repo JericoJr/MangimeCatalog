@@ -535,7 +535,6 @@ label {
     color: rgb(206, 175, 2);
 }
 
-
 #top-section {
     width: 100%;
     display: flex;
@@ -547,7 +546,7 @@ label {
 
 #current-upcoming-section {
     width: 100%;
-    display: flex;
+    display: none;
     flex-direction: row;
     /* border: 2px solid rgb(255, 153, 0); */
     height: 100%;
