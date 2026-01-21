@@ -486,19 +486,20 @@ label {
 }
 
 .randomAnimePick, .randomMangaPick {
-    height: 15%;
+    height: 25%;
     width: 100%;
     /* border: 2px solid palegreen; */
     font-weight: bold;
     text-align: center;
     justify-content: center;
-    font-size: 2vw;
+    font-size: 1.8vw;
+    color: rgb(253, 248, 249);
 }
 
 .randomImgContainer {
     border: 0.8vw solid rgb(206, 175, 2);
     border-radius: 1vw;
-    height: 65%;
+    height: 60%;
 }
 
 .randomAnimeImg, .randomMangaImg {
