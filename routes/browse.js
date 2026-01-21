@@ -1,19 +1,20 @@
 const express = require('express');
 const router = express.Router();
-const delay = ms => new Promise(res => setTimeout(res, ms));
 
 
 router.get("/", async (request, response) => {
+    const delay = ms => new Promise(res => setTimeout(res, ms));
 
+    await delay(350);
     const topAnime = await topAnimeList();
+    
     await delay(350);
-
     const topManga = await topMangaList();
+    
     await delay(350);
-
     const current = await currentList();
+    
     await delay(350);
-
     const upcoming = await upcomingList();
     response.render("browse", {topAnimeList: topAnime, topMangaList: topManga, currentList: current, upcomingList: upcoming});
 });
