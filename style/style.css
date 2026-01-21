@@ -553,6 +553,11 @@ label {
     gap: 2vw;
 }
 
+#search-section {
+    width: 100%;
+    display: none;
+}
+
 .topAnime-section, .topManga-section, .current-section, .upcoming-section {
     /* border: 2px solid pink; */
     display: flex;
