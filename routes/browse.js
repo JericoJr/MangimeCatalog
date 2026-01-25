@@ -16,8 +16,84 @@ router.get("/", async (request, response) => {
     
     await delay(350);
     const upcoming = await upcomingList();
-    response.render("browse", {topAnimeList: topAnime, topMangaList: topManga, currentList: current, upcomingList: upcoming});
+
+    response.render("browse", {topAnimeList: topAnime, topMangaList: topManga, currentList: current, upcomingList: upcoming, searchResults: null, showSection: ""});
 });
+
+router.post("/search", async (request, response) => {
+    const delay = ms => new Promise(res => setTimeout(res, ms));
+
+    await delay(350);
+    const topAnime = await topAnimeList();
+    
+    await delay(350);
+    const topManga = await topMangaList();
+    
+    await delay(350);
+    const current = await currentList();
+    
+    await delay(350);
+    const upcoming = await upcomingList();
+    
+    await delay(350);
+    const searchTable = await searchContent(request.body.searchTitle, request.body.searchContentType);
+    
+    response.render("browse", {topAnimeList: topAnime, topMangaList: topManga, currentList: current, upcomingList: upcoming, searchResults: searchTable, showSection: "search"});
+});
+
+async function searchContent(title, type) {
+    let list = `
+        <table class="searchTable">
+        <colgroup>
+            <col style="width: 17%">   
+            <col style="width: 22%">  
+            <col style="width: 18%">   
+            <col style="width: 10%">  
+            <col style="width: 10%"> 
+            <col style="width: 18%">    
+        </colgroup>
+        <thead class="searchHeaderTable">
+            <tr>
+                <th class="searchImg"></th>
+                <th class="searchTitle">Title</th>
+                <th class="searchGenres">Genres</th>
+                ${type === "Anime" ? `<th class="searchEpisodes">Episodes</th>`: `<th class="searchChapters">Chapters</th>`}
+                <th class="searchScore">Score</th>
+                <th class="searchReview">Review</th>
+            </tr>
+        </thead>
+        <tbody class="searchBodyTable">
+    `;
+
+    try {
+        const response = await fetch(`https://api.jikan.moe/v4/${type.toLowerCase()}?q=${title}`);
+        const result = await response.json();
+        const arr = result.data;
+        arr.forEach(item => {
+            let genresArr = item.genres;
+            let str_genres;
+            if (genresArr) {
+                str_genres = genresArr.map(genre => genre.name).join(", ");
+            } else {
+                str_genres = "n/a";
+            }
+            list += 
+            `<tr class="searchTableRow"> 
+                <td class="contentCover"><img class="contentCover" src="${item.images.jpg.large_image_url}"></td> 
+                <td>${item.title_english || item.title}</td> 
+                <td>${str_genres}</td> 
+                <td>${type === "Anime" ? item.episodes || "n/a" : item.chapters || "n/a"}</td>
+                <td>${item.score}</td>
+                <td> <button class="review-btn">Review</button> <button class="addList-btn">Add To List</button> </td>
+            </tr>`;
+        })
+    } catch(error) {
+        console.log("\nError fetching content:", error);
+        list += `<tr><td colspan="6">Error Searcgubg Data</td></tr>`;
+    }
+    list += `</tbody> </table>`;
+    return list;
+};
 
 async function topAnimeList() {
     try {

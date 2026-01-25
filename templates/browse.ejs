@@ -139,7 +139,34 @@
 
             <!--Search-->
             <div id="search-section">
-                <p>SEARCH!</p>
+                <div class="search-content">
+                    <div class="search-title-container">
+                        <h2 class="search-title">Search</h2>
+                    </div>
+                    <div class="search-form-container">
+                        <form class="search-form" action="/browse/search" method="POST">
+                            <fieldset class="search-fieldset">
+                                <div class="search-form-fields">
+                                    <labeL> Title: <input type="text" class="searchTitle" name="searchTitle" placeholder="Type Title" required> 
+                                    </labeL> <br>
+                                    <label> Type:
+                                        <select class="searchContentType" name="searchContentType">
+                                            <option value="Anime">Anime</option>
+                                            <option value="Manga">Manga</option>
+                                        </select> 
+                                    </label> <br>
+                                    <div class="search-buttons-container">
+                                        <input class="search-reset" type="reset">
+                                        <button id="search-button"> Search </button> 
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </form>
+                    </div>
+                    <div class="search-results-container">
+                        <%- searchResults %>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -155,6 +182,17 @@
             const cuSection = document.getElementById("current-upcoming-section");
             const searchSection = document.getElementById("search-section");
 
+            // Initial section visibility
+            const showSection = "<%= showSection || '' %>"; 
+             if(showSection === "search") {
+                searchSection.style.display = "flex";
+                topSection.style.display = "none";
+                cuSection.style.display = "none";
+            } else {
+                topSection.style.display = "flex";
+                cuSection.style.display = "none";
+                searchSection.style.display = "none";
+            }
 
             topBtn.addEventListener("click", () => {
                 topSection.style.display = "flex";

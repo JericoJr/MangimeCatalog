@@ -557,7 +557,96 @@ label {
 #search-section {
     width: 100%;
     display: none;
+    flex-direction: column;
 }
+
+.search-title-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    /* border: 2px solid red; */
+    width: 90%;
+    padding: 0;
+}
+
+.search-title {
+    padding: 0;
+    margin: 0;
+    /* border: 2px solid greenyellow; */
+}
+
+.search-form-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    /* border: 2px solid blue; */
+    width: 90%;
+}
+
+.search-results-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* border: 2px solid orange; */
+    width: 90%;
+    margin-top: 2vw;
+}
+
+.search-form {
+    width: 100%;
+}
+
+.search-fieldset {
+    border: solid rgb(5, 5, 192) 0.5vw;
+    border-radius: 1vw;
+}
+
+.search-fieldset label {
+    font-size: 2vw;
+    color: rgb(206, 175, 2);
+    font-weight: bolder;
+}
+
+.searchTitle {
+    width: 50vw;
+    height: 2vw;
+    font-size: 1.5vw;
+}
+
+.searchContentType {
+    font-size: 1.5vw;
+    width: 10vw;
+    height: 2vw;
+}
+
+.search-form-fields {
+    padding: 1vw;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3vw;
+}
+
+.search-buttons-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+    gap: 0.5vw;
+}
+
+.search-reset, #search-button {
+    font-size: 1.5vw;
+    border: solid rgb(206, 175, 2) 0.2vw;
+    background-color: rgb(5, 5, 192);
+    border-radius: 0.5vw;
+    color: white;
+    width: 8vw;
+}
+.search-reset:hover, #search-button:hover {
+    cursor: pointer;
+    background-color: rgb(45, 45, 234);
+    border: solid rgb(255, 230, 88) 0.2vw;
+}
+
 
 .topAnime-section, .topManga-section, .current-section, .upcoming-section {
     /* border: 2px solid pink; */
@@ -579,7 +668,7 @@ label {
     width: 50%;
 }
 
-.topAnime-content, .topManga-content, .current-content, .upcoming-content {
+.topAnime-content, .topManga-content, .current-content, .upcoming-content, .search-content {
     /* border: 2px solid greenyellow; */
     width: 95%;
     display: flex;
@@ -587,18 +676,12 @@ label {
     align-items: center;
 }
 
-.topAnimeTable, .topMangaTable {
+.topAnimeTable, .topMangaTable, .currentTable, .upcomingTable, .searchTable {
     width: 100%;
     border: solid rgb(206, 175, 2) 0.6vw;
 }
 
-.currentTable, .upcomingTable {
-    width: 100%;
-    border: solid rgb(206, 175, 2) 0.6vw;
-}
-
-
-.topHeaderTable th, .topBodyTable td {
+.topHeaderTable th, .topBodyTable td, .searchBodyTable td {
     border: solid rgb(206, 175, 2) 0.3vw;
     font-size: 1vw;
 }
@@ -618,6 +701,18 @@ label {
     font-size: 1.5vw;
 }
 
+.searchHeaderTable th, .searchBodyTable td{
+    border: solid rgb(206, 175, 2) 0.3vw;
+    color: rgb(206, 175, 2);
+    font-size: 1.5vw;
+}
+
+.searchBodyTable td{
+    border: solid rgb(206, 175, 2) 0.3vw;
+    color: white;
+    font-size: 1.5vw;
+    text-align: center;
+}
 
 .topBodyTable td {
     font-size: 1.5vw;
@@ -629,7 +724,7 @@ label {
     text-align: center;
 }
 
-.topTableRow, .currentTableRow, .upcomingTableRow {
+.topTableRow, .currentTableRow, .upcomingTableRow, .currentTableRow {
     max-height: 15vw;
 }
 
@@ -638,7 +733,7 @@ label {
     font-size: 1.4vw;
 }
 
-.currentTableRow td, .upcomingTableRow td {
+.currentTableRow td, .upcomingTableRow td , .currentTableRow td{
     height: 8vw;
     font-size: 1vw;
 }
@@ -651,6 +746,26 @@ label {
 
 .cu-animeCover {
     object-fit: contain;
+}
+
+.contentCover {
+    height: 18vw;
+    width: 18vw;
+}
+
+.review-btn, .addList-btn {
+    font-size: 1.5vw;
+    border: solid rgb(206, 175, 2) 0.2vw;
+    background-color: rgb(5, 5, 192);
+    border-radius: 0.5vw;
+    color: white;
+    width: 12vw;
+    margin-top: 1vw;
+}
+.review-btn:hover, .addList-btn:hover {
+    cursor: pointer;
+    background-color: rgb(45, 45, 234);
+    border: solid rgb(255, 230, 88) 0.2vw;
 }
 
 /* ---------- My Stuff --------------- */
