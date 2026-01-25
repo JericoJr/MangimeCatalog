@@ -580,7 +580,7 @@ label {
     flex-direction: row;
     justify-content: center;
     /* border: 2px solid blue; */
-    width: 90%;
+    width: 95%;
 }
 
 .search-results-container {
@@ -588,7 +588,7 @@ label {
     flex-direction: column;
     justify-content: center;
     /* border: 2px solid orange; */
-    width: 90%;
+    width: 95%;
     margin-top: 2vw;
 }
 
