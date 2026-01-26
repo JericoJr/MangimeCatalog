@@ -1,6 +1,31 @@
 const express = require('express');
 const router = express.Router();
+const mongoose = require("mongoose");
 
+//Schema for Anime, Manga
+const animeSchema = new mongoose.Schema({
+  user: String,
+  title: String,
+  type: String,
+  status: String,
+  genre: [String],
+  rating: Number,
+  comments: String
+});
+
+const mangaSchema = new mongoose.Schema({
+  user: String,
+  title: String,
+  type: String,
+  status: String,
+  genre: [String],
+  rating: Number,
+  comments: String
+});
+
+//Creates model only once, if exists using exisiting, otherwise create new one
+const Anime = mongoose.models.Anime || mongoose.model("Anime", animeSchema);
+const Manga = mongoose.models.Manga || mongoose.model("Manga", mangaSchema);
 
 router.get("/", async (request, response) => {
     const delay = ms => new Promise(res => setTimeout(res, ms));
@@ -42,6 +67,57 @@ router.post("/search", async (request, response) => {
     response.render("browse", {topAnimeList: topAnime, topMangaList: topManga, currentList: current, upcomingList: upcoming, searchResults: searchTable, showSection: "search"});
 });
 
+router.post("/addToList", async (request, response) => {
+    const objectID = request.body.contentID;
+    const type = request.body.contentType;
+    const delay = ms => new Promise(res => setTimeout(res, ms));
+    await delay(350);
+    let result = await addToDB(objectID, type, request);
+    // if (result) {
+    //     console.log("add To List");
+    // }
+    response.sendStatus(204);
+});
+
+async function addToDB(objectID, type, request) {
+    try {
+        const response = await fetch(`https://api.jikan.moe/v4/${type.toLowerCase()}/${objectID}/full`);
+        const result = await response.json();
+        const data = result.data;
+        const str_genres = (data.genres).map(genre => genre.name).join(", ");
+
+        await mongoose.connect(process.env.MONGO_CONNECTION_STRING, { dbName: "contentDB"});
+        if (type === "Anime") {
+          await Anime.create({
+            user: request.session.user.email,
+            title: data.title || data.title_english,
+            type: "Anime",
+            status: "Waitlist",
+            genre: str_genres,
+            rating: 0,
+            comments: ""
+          });
+        //   console.log("\nAdded Anime to Database");
+        } else {
+          await Manga.create({
+            user: request.session.user.email,
+            title: data.title || data.title_english,
+            type: "Manga",
+            status: "Waitlist",
+            genre: data.genres,
+            rating: 0,
+            comments: ""
+          }); 
+          console.log("\nAdded Manga to Database");
+        }
+        mongoose.disconnect();
+    } catch (err) {
+        console.error(err);
+        return false;
+    }
+    return true;
+}
+
 async function searchContent(request) {
     const type = request.body.searchContentType;
     const searchFilter = request.body.searchFilter;
@@ -76,6 +152,9 @@ async function searchContent(request) {
             response = await fetch(`https://api.jikan.moe/v4/${type.toLowerCase()}?q=${title}`);
         } else {
             const genresArray = [].concat(request.body.searchGenre || []);
+            if (genresArray.length <= 0) {
+                return `<p class="err-message">MUST SELECT ONE OR MORE GENRES</p>`
+            }
             const genres = genresArray.join(",");
             response = await fetch(`https://api.jikan.moe/v4/${type.toLowerCase()}?genres=${genres}`);
         }
@@ -93,10 +172,18 @@ async function searchContent(request) {
             `<tr class="searchTableRow"> 
                 <td class="contentCover"><img class="contentCover" src="${item.images.jpg.large_image_url}"></td> 
                 <td>${item.title_english || item.title}</td> 
-                <td>${str_genres}</td> 
+                <td>${str_genres || "n/a"}</td> 
                 <td>${type === "Anime" ? item.episodes || "n/a" : item.chapters || "n/a"}</td>
                 <td>${item.score || "n/a"}</td>
-                <td> <button class="review-btn">Review</button> <button class="addList-btn">Add To List</button> </td>
+                <td> 
+                    <button class="review-btn" data-id="${item._id}">Review</button> 
+                    
+                    <form action="/browse/addToList" method="POST"> 
+                        <input type="hidden" name="contentID" value="${item.mal_id}"> 
+                        <input type="hidden" name="contentType" value="${type}"> 
+                        <button type="submit" class="addList-btn">Add To List</button>
+                    </form> 
+                </td>
             </tr>`;
         })
     } catch(error) {

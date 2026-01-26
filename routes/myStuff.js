@@ -166,11 +166,13 @@ async function getTable(type, sortFilter, email) {
                                     <td>${content.rating}</td> <td class="comment-cell">${content.comments}</td> 
                                     <td class="buttons-cell"> 
                                         <div class="buttons-cell-section">
-                                        <form action="/myStuff/editContent" method="POST"> <input type="hidden" name="contentID" value="${content._id}"> 
+                                        <form action="/myStuff/editContent" method="POST"> 
+                                            <input type="hidden" name="contentID" value="${content._id}"> 
                                             <input type="hidden" name="contentType" value="${type}"> 
                                             <button class="editTableContent" type="submit">Edit</button> 
                                         </form> 
-                                        <form action="/myStuff/delContent" method="POST"> <input type="hidden" name="contentID" value="${content._id}"> 
+                                        <form action="/myStuff/delContent" method="POST"> 
+                                            <input type="hidden" name="contentID" value="${content._id}"> 
                                             <input type="hidden" name="contentType" value="${type}"> 
                                             <button class="delTableContent" type="submit">Delete</button> 
                                         </form> 
@@ -275,19 +277,39 @@ async function editContent(typeContent, id) {
                     <select name="status" class="editStatusInput" required>
                         ${statusSection}
                     </select> <br>     
-                    <label>Genre: </label> <br>
+                    <label>Genre: </label> 
+
+                    <div id="genreEditSection">
                     <label><input type="checkbox" class="editGenreInput" name="genre" value="Action" ${data.genre.includes("Action") ? "checked" : ""}>Action</label>
                     <label><input type="checkbox" class="editGenreInput" name="genre" value="Adventure" ${data.genre.includes("Adventure") ? "checked" : ""}>Adventure</label>
+                    <label><input type="checkbox" class="editGenreInput" name="genre" value="Award Winning" ${data.genre.includes("Award Winning") ? "checked" : ""}>Award Winning</label>
                     <label><input type="checkbox" class="editGenreInput" name="genre" value="Comedy" ${data.genre.includes("Comedy") ? "checked" : ""}>Comedy</label>
-                    <label><input type="checkbox" class="editGenreInput" name="genre" value="Drama" ${data.genre.includes("Drama") ? "checked" : ""}>Drama</label> <br>
+                    <label><input type="checkbox" class="editGenreInput" name="genre" value="Drama" ${data.genre.includes("Drama") ? "checked" : ""}>Drama</label> 
                     <label><input type="checkbox" class="editGenreInput" name="genre" value="Fantasy" ${data.genre.includes("Fantasy") ? "checked" : ""}>Fantasy</label>
+                    <label><input type="checkbox" class="editGenreInput" name="genre" value="Gourment" ${data.genre.includes("Gourment") ? "checked" : ""}>Gourment</label>
                     <label><input type="checkbox" class="editGenreInput" name="genre" value="Historical" ${data.genre.includes("Historical") ? "checked" : ""}>Historical</label>
                     <label><input type="checkbox" class="editGenreInput" name="genre" value="Horror" ${data.genre.includes("Horror") ? "checked" : ""}>Horror</label>
-                    <label><input type="checkbox" class="editGenreInput" name="genre" value="Mystery" ${data.genre.includes("Mystery") ? "checked" : ""}>Mystery</label> <br>
+                    <label><input type="checkbox" class="editGenreInput" name="genre" value="Isekai" ${data.genre.includes("Isekai") ? "checked" : ""}>Isekai</label>
+                    <label><input type="checkbox" class="editGenreInput" name="genre" value="Mystery" ${data.genre.includes("Mystery") ? "checked" : ""}>Mystery</label> 
+                    <label><input type="checkbox" class="editGenreInput" name="genre" value="Martial Arts" ${data.genre.includes("Martial Arts") ? "checked" : ""}>Martial Arts</label> 
+                    <label><input type="checkbox" class="editGenreInput" name="genre" value="Mecha" ${data.genre.includes("Mecha") ? "checked" : ""}>Mecha</label> 
+                    <label><input type="checkbox" class="editGenreInput" name="genre" value="Medical" ${data.genre.includes("Medical") ? "checked" : ""}>Medical</label> 
+                    <label><input type="checkbox" class="editGenreInput" name="genre" value="Military" ${data.genre.includes("Military") ? "checked" : ""}>Military</label> 
+                    <label><input type="checkbox" class="editGenreInput" name="genre" value="Music" ${data.genre.includes("Music") ? "checked" : ""}>Music</label> 
+                    <label><input type="checkbox" class="editGenreInput" name="genre" value="Mythology" ${data.genre.includes("Mytholody") ? "checked" : ""}>Mythology</label> 
+                    <label><input type="checkbox" class="editGenreInput" name="genre" value="Parody" ${data.genre.includes("Parody") ? "checked" : ""}>Parody</label> 
+                    <label><input type="checkbox" class="editGenreInput" name="genre" value="Psychological" ${data.genre.includes("Psychological") ? "checked" : ""}>Psychological</label> 
+                    <label><input type="checkbox" class="editGenreInput" name="genre" value="Reincarnation" ${data.genre.includes("Reincarnation") ? "checked" : ""}>Reincarnation</label> 
                     <label><input type="checkbox" class="editGenreInput" name="genre" value="Romance" ${data.genre.includes("Romance") ? "checked" : ""}>Romance</label>
-                    <label><input type="checkbox" class="editGenreInput" name="genre" value="Sci-Fi" ${data.genre.includes("Sci-Fi") ? "checked" : ""}>Sci-Fi</label>
+                    <label><input type="checkbox" class="editGenreInput" name="genre" value="School" ${data.genre.includes("Scholl") ? "checked" : ""}>School</label>
                     <label><input type="checkbox" class="editGenreInput" name="genre" value="Slice-Of-Life" ${data.genre.includes("Slice-Of-Life") ? "checked" : ""}>Slice Of Life</label>
-                    <br>
+                    <label><input type="checkbox" class="editGenreInput" name="genre" value="Space" ${data.genre.includes("Space") ? "checked" : ""}>Space</label>
+                    <label><input type="checkbox" class="editGenreInput" name="genre" value="Sports" ${data.genre.includes("Sports") ? "checked" : ""}>Sports</label>
+                    <label><input type="checkbox" class="editGenreInput" name="genre" value="Supernatural" ${data.genre.includes("Supernatural") ? "checked" : ""}>Supernatural</label>
+                    <label><input type="checkbox" class="editGenreInput" name="genre" value="Super Power" ${data.genre.includes("Super Power") ? "checked" : ""}>Super Power</label>
+                    <label><input type="checkbox" class="editGenreInput" name="genre" value="Survival" ${data.genre.includes("Survival") ? "checked" : ""}>Survival</label>
+                    </div>
+
                     <label>Rating: <input type="number" class="editRatingInput" name="rating" min="1" max="10" value="${data.rating}" required> out of 10</label> <br>
                     <label>Comments:</label><br>
                     <label><textarea class="editCommentsInput" rows="10" cols="20" name="comments">${data.comments}</textarea></label>
