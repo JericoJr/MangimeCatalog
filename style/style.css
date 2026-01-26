@@ -801,6 +801,81 @@ label {
     border: solid rgb(255, 230, 88) 0.2vw;
 }
 
+#showContent-Popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 60%;
+    width: 50%;
+
+    align-items: center;
+
+    display: none;
+    flex-direction: column;
+    background-color: rgba(45, 45, 234, 0.7);
+    border: solid rgb(206, 175, 2) 0.6vw;
+    border-radius: 1vw;
+    padding-left: 2vw;
+    padding-right: 2vw;
+    padding-bottom: 2vw;
+    padding-top: 0.5vw;
+    /* border: 2px solid red; */
+}
+
+.popup-btn-section {
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+    width: 100%;
+    height: 5%;
+}
+
+.popup-content {
+    display: flex;
+    flex-direction: column;
+    height: 95%;
+    /* border: 2px solid orange; */
+    gap: 0.2vw;
+}
+
+#cancel-review {
+    background: none;
+    color: white;
+    font-weight: bolder;
+    font-size: 2vw;
+    border: none;
+}
+
+.review-line {
+    width: 100%;
+    color: darkgrey;
+    font-size: 2vw;
+}
+
+#cancel-review:hover {
+    color: rgb(217, 24, 24);
+}
+
+.item-header {
+    font-size: 2vw;
+    font-weight: bolder;
+    font-family: "Bitcount Prop Single";
+    color: rgb(206, 175, 2);
+}
+
+.item-title {
+    font-size: 1.5vw;
+    color: rgb(206, 175, 2);
+    display: block;
+}
+
+.item-text {
+    font-size: 1vw;
+    display:inline;
+    gap:0;
+}
+
 /* ---------- My Stuff --------------- */
 
 .button-section {

@@ -17,6 +17,7 @@ const bodyParser = require("body-parser");
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
+
 const login = require("./routes/login");
 const signup = require("./routes/signup")
 const home = require("./routes/home");
@@ -28,7 +29,7 @@ const forgot = require("./routes/forgot");
 
 app.set('view engine', 'ejs');
 app.set('views', './templates'); 
-
+app.use(express.json());
 app.use(express.static('style'));
 app.use("/", login);
 app.use("/signup", signup);

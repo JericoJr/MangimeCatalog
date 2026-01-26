@@ -82,6 +82,35 @@ router.post("/addToList", async (request, response) => {
     response.sendStatus(204);
 });
 
+router.post("/reviewContent", async(request, response) => {
+    const objectID = request.body.contentID;
+    // console.log(`ObjectID: ${objectID}`);
+    const contentType = request.body.contentType;
+    // console.log(`Type: ${contentType}`);
+
+    const delay = ms => new Promise(res => setTimeout(res, ms));
+    await delay(350);
+    let data = await review(objectID, contentType);
+    // if (result) {
+    //     console.log("add To List");
+    // }
+    response.json({
+        data
+    });
+});
+
+async function review(id, type) {
+    try {
+        const response = await fetch(`https://api.jikan.moe/v4/${type}/${id}/full`);
+        // console.log(response);
+        const result = await response.json();
+        return result.data;
+    } catch (err) {
+        console.error(err);
+        return null;
+    }
+}
+
 async function addToDB(objectID, type, request) {
     try {
         const response = await fetch(`https://api.jikan.moe/v4/${type}/${objectID}/full`);
@@ -181,8 +210,13 @@ async function searchContent(request) {
                 <td>${type == "Anime" ? item.episodes || "n/a" : item.chapters || "n/a"}</td>
                 <td>${item.score || "n/a"}</td>
                 <td> 
-                    <button class="review-btn" data-id="${item._id}">Review</button> 
-                    
+                   <button
+                        class="review-btn"
+                        data-id="${item.mal_id}"
+                        data-type="${type === 'Anime' ? 'anime' : 'manga'}">
+                        Review
+                    </button>
+
                     <form action="/browse/addToList" method="POST"> 
                         <input type="hidden" name="contentID" value="${item.mal_id}"> 
                         <input type="hidden" name="contentType" value="${type == "Anime" ? "anime" : "manga"}"> 
@@ -193,7 +227,7 @@ async function searchContent(request) {
         })
     } catch(error) {
         console.log("\nError fetching content:", error);
-        list += `<tr><td colspan="6">Error Searcgubg Data</td></tr>`;
+        list += `<tr><td colspan="6">Error Searching Data</td></tr>`;
     }
     list += `</tbody> </table>`;
     return list;

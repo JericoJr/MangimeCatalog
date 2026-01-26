@@ -210,25 +210,19 @@
             </div>
         </div>
     </div>
+
+    <!--Popup-->
+    <div id="showContent-Popup">
+        <div class="popup-btn-section">
+            <button id="cancel-review">X</button>
+        </div>
+        <hr class="review-line">
+        <div id="popup-content">
+
+        </div>
+    </div>
     
     <script>
-        //For Search Filters
-        const titleDiv = document.getElementById("titleInputSection");
-        const genreDiv = document.getElementById("genreInputSection");
-
-        document.querySelectorAll('.searchFilter').forEach(filter => { 
-            filter.addEventListener("change", () => {
-                if(filter.value == "Title" && filter.checked) {
-                    titleDiv.style.display = "flex";
-                    genreDiv.style.display = "none";
-                } else {
-                    titleDiv.style.display = "none";
-                    genreDiv.style.display = "grid";
-                }
-            });
-
-        });
-
         // This runs in the browser
         document.addEventListener("DOMContentLoaded", () => {
             const topBtn = document.getElementById("Browse-Top");
@@ -268,7 +262,94 @@
                 cuSection.style.display = "none";
                 topSection.style.display = "none";
             });
+
+            //For Search Filters
+            const titleDiv = document.getElementById("titleInputSection");
+            const genreDiv = document.getElementById("genreInputSection");
+
+            document.querySelectorAll('.searchFilter').forEach(filter => { 
+                filter.addEventListener("change", () => {
+                    if(filter.value == "Title" && filter.checked) {
+                        titleDiv.style.display = "flex";
+                        genreDiv.style.display = "none";
+                    } else {
+                        titleDiv.style.display = "none";
+                        genreDiv.style.display = "grid";
+                    }
+                });
+            });
+
+            //For review popups            
+            const reviewBtns = document.querySelectorAll(`.review-btn`);
+            const popup = document.getElementById("showContent-Popup");
+
+            const cancelReviewBtn = document.getElementById("cancel-review");
+            cancelReviewBtn.addEventListener("click", () => {
+                popup.style.display = "none";
+            });
+
+            reviewBtns.forEach(btn => {
+                btn.addEventListener("click", async (e) => {
+                    e.preventDefault(); // stops page navigation
+                    if(popup.style.display == "none") {
+                        popup.style.display = "flex";
+
+
+                        const contentID = btn.dataset.id;   
+                        const contentType = btn.dataset.type;
+
+                        //document.querySelector('.popup-content').innerHTML = `<p>id: ${contentID || "none"}, type: ${contentType | "none"}</p>`;
+
+                        console.log("Dataset:", btn.dataset); 
+
+                        const response = await fetch("/browse/reviewContent", {
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/json"
+                            },
+                            body: JSON.stringify({
+                                contentID,
+                                contentType
+                            })
+                        });
+                        console.log("Response status:", response.status);
+
+                        if (!response.ok) {
+                            const text = await response.text();
+                            console.error("Server returned:", text);
+                            return;
+                        }
+
+                        const result = await response.json();
+                        // console.log(result);
+                        const data = result.data;
+                        // Use JSON to update the page
+                        document.getElementById("popup-content").innerHTML = `
+                                <span class="item-header">${data.title}</span>
+                                <div class="item-summary">
+                                    <span class="item-title">Summary:</span>
+                                    <span class="item-text">${data.synopsis || "none"}</span>
+                                </div>   
+                                <div class="item-background">
+                                    <span class="item-title">Background:</span>
+                                    <span class="item-text">${data.background || "none"}</span>
+                                </div>
+                                <div class="item-reviews">
+                                    <span class="item-title">Reviews:</span>
+                                </div>
+                        `;
+                    } else {
+                        popup.style.display = "none";
+                    }
+                });
+            });
         });
+
+
+            
+
+
+    
     </script>
 </body>
 </html>
