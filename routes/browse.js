@@ -69,10 +69,13 @@ router.post("/search", async (request, response) => {
 
 router.post("/addToList", async (request, response) => {
     const objectID = request.body.contentID;
-    const type = request.body.contentType;
+    // console.log(`ObjectID: ${objectID}`);
+    const contentType = request.body.contentType;
+    // console.log(`Type: ${contentType}`);
+
     const delay = ms => new Promise(res => setTimeout(res, ms));
     await delay(350);
-    let result = await addToDB(objectID, type, request);
+    let result = await addToDB(objectID, contentType, request);
     // if (result) {
     //     console.log("add To List");
     // }
@@ -81,13 +84,15 @@ router.post("/addToList", async (request, response) => {
 
 async function addToDB(objectID, type, request) {
     try {
-        const response = await fetch(`https://api.jikan.moe/v4/${type.toLowerCase()}/${objectID}/full`);
+        const response = await fetch(`https://api.jikan.moe/v4/${type}/${objectID}/full`);
+        // console.log(response);
         const result = await response.json();
         const data = result.data;
-        const str_genres = (data.genres).map(genre => genre.name).join(", ");
+        const genreArr = data.genres;
+        const str_genres = genreArr.map(genre => genre.name).join(", ");
 
         await mongoose.connect(process.env.MONGO_CONNECTION_STRING, { dbName: "contentDB"});
-        if (type === "Anime") {
+        if (type === "anime") {
           await Anime.create({
             user: request.session.user.email,
             title: data.title || data.title_english,
@@ -104,11 +109,11 @@ async function addToDB(objectID, type, request) {
             title: data.title || data.title_english,
             type: "Manga",
             status: "Waitlist",
-            genre: data.genres,
+            genre: str_genres,
             rating: 0,
             comments: ""
           }); 
-          console.log("\nAdded Manga to Database");
+        //   console.log("\nAdded Manga to Database");
         }
         mongoose.disconnect();
     } catch (err) {
@@ -173,14 +178,14 @@ async function searchContent(request) {
                 <td class="contentCover"><img class="contentCover" src="${item.images.jpg.large_image_url}"></td> 
                 <td>${item.title_english || item.title}</td> 
                 <td>${str_genres || "n/a"}</td> 
-                <td>${type === "Anime" ? item.episodes || "n/a" : item.chapters || "n/a"}</td>
+                <td>${type == "Anime" ? item.episodes || "n/a" : item.chapters || "n/a"}</td>
                 <td>${item.score || "n/a"}</td>
                 <td> 
                     <button class="review-btn" data-id="${item._id}">Review</button> 
                     
                     <form action="/browse/addToList" method="POST"> 
                         <input type="hidden" name="contentID" value="${item.mal_id}"> 
-                        <input type="hidden" name="contentType" value="${type}"> 
+                        <input type="hidden" name="contentType" value="${type == "Anime" ? "anime" : "manga"}"> 
                         <button type="submit" class="addList-btn">Add To List</button>
                     </form> 
                 </td>
