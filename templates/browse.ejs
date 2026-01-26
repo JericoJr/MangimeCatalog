@@ -147,18 +147,58 @@
                         <form class="search-form" action="/browse/search" method="POST">
                             <fieldset class="search-fieldset">
                                 <div class="search-form-fields">
-                                    <labeL> Title: <input type="text" class="searchTitle" name="searchTitle" placeholder="Type Title" required> 
-                                    </labeL> <br>
                                     <label> Type:
                                         <select class="searchContentType" name="searchContentType">
                                             <option value="Anime">Anime</option>
                                             <option value="Manga">Manga</option>
                                         </select> 
-                                    </label> <br>
-                                    <div class="search-buttons-container">
-                                        <input class="search-reset" type="reset">
-                                        <button id="search-button"> Search </button> 
+                                    </label> 
+
+                                    <label> Filter:</label> 
+                                    <div class="searchFilter-section">
+                                        <label> <input type="radio" class="searchFilter" name="searchFilter" value="Title" required> Title: </label> 
+                                        <div id="titleInputSection">
+                                            <input type="text" class="searchTitle" name="searchTitle" placeholder="Type Title"  autocomplete="on"> 
+                                        </div>
+
+                                        <label> <input type="radio" class="searchFilter" name="searchFilter" value="Genres"> Genres: </label> 
+                                        <div id="genreInputSection">
+                                            <label><input type="checkbox" class="searchGenreInput" name="searchGenre" value="1" required>Action</label>
+                                            <label><input type="checkbox" class="searchGenreInput" name="searchGenre" value="2">Adventure</label>
+                                            <label><input type="checkbox" class="searchGenreInput" name="searchGenre" value="46">Award Winning</label>
+                                            <label><input type="checkbox" class="searchGenreInput" name="searchGenre" value="4">Comedy</label>
+                                            <label><input type="checkbox" class="searchGenreInput" name="searchGenre" value="8">Drama</label> 
+                                            <label><input type="checkbox" class="searchGenreInput" name="searchGenre" value="10">Fantasy</label>
+                                            <label><input type="checkbox" class="searchGenreInput" name="searchGenre" value="47">Gourment</label> 
+                                            <label><input type="checkbox" class="searchGenreInput" name="searchGenre" value="13">Historical</label>
+                                            <label><input type="checkbox" class="searchGenreInput" name="searchGenre" value="14">Horror</label>
+                                            <label><input type="checkbox" class="searchGenreInput" name="searchGenre" value="62">Isekai</label>
+                                            <label><input type="checkbox" class="searchGenreInput" name="searchGenre" value="7">Mystery</label> 
+                                            <label><input type="checkbox" class="searchGenreInput" name="searchGenre" value="17">Martial Arts</label> 
+                                            <label><input type="checkbox" class="searchGenreInput" name="searchGenre" value="18">Mecha</label> 
+                                            <label><input type="checkbox" class="searchGenreInput" name="searchGenre" value="67">Medical</label> 
+                                            <label><input type="checkbox" class="searchGenreInput" name="searchGenre" value="38">Military</label> 
+                                            <label><input type="checkbox" class="searchGenreInput" name="searchGenre" value="19">Music</label> 
+                                            <label><input type="checkbox" class="searchGenreInput" name="searchGenre" value="6">Mythology</label> 
+                                            <label><input type="checkbox" class="searchGenreInput" name="searchGenre" value="20">Parody</label> 
+                                            <label><input type="checkbox" class="searchGenreInput" name="searchGenre" value="40">Psychological</label> 
+                                            <label><input type="checkbox" class="searchGenreInput" name="searchGenre" value="72">Reincarnation</label> 
+                                            <label><input type="checkbox" class="searchGenreInput" name="searchGenre" value="22">Romance</label> 
+                                            <label><input type="checkbox" class="searchGenreInput" name="searchGenre" value="23">School</label>
+                                            <label><input type="checkbox" class="searchGenreInput" name="searchGenre" value="36">Slice Of Life</label>
+                                            <label><input type="checkbox" class="searchGenreInput" name="searchGenre" value="29">Space</label>
+                                            <label><input type="checkbox" class="searchGenreInput" name="searchGenre" value="30">Sports</label>
+                                            <label><input type="checkbox" class="searchGenreInput" name="searchGenre" value="37">Supernatural</label>
+                                            <label><input type="checkbox" class="searchGenreInput" name="searchGenre" value="31">Super Power</label>
+                                            <label><input type="checkbox" class="searchGenreInput" name="searchGenre" value="76">Survival</label>
+                                        </div>
+                                        
+                                        <div class="search-buttons-container">
+                                            <input class="search-reset" type="reset">
+                                            <button id="search-button"> Search </button> 
+                                        </div>
                                     </div>
+                     
                                 </div>
                             </fieldset>
                         </form>
@@ -172,6 +212,23 @@
     </div>
     
     <script>
+        //For Search Filters
+        const titleDiv = document.getElementById("titleInputSection");
+        const genreDiv = document.getElementById("genreInputSection");
+
+        document.querySelectorAll('.searchFilter').forEach(filter => { 
+            filter.addEventListener("change", () => {
+                if(filter.value == "Title" && filter.checked) {
+                    titleDiv.style.display = "flex";
+                    genreDiv.style.display = "none";
+                } else {
+                    titleDiv.style.display = "none";
+                    genreDiv.style.display = "grid";
+                }
+            });
+
+        });
+
         // This runs in the browser
         document.addEventListener("DOMContentLoaded", () => {
             const topBtn = document.getElementById("Browse-Top");

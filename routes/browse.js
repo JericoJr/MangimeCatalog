@@ -36,12 +36,16 @@ router.post("/search", async (request, response) => {
     const upcoming = await upcomingList();
     
     await delay(350);
-    const searchTable = await searchContent(request.body.searchTitle, request.body.searchContentType);
+
+    const searchTable = await searchContent(request);
     
     response.render("browse", {topAnimeList: topAnime, topMangaList: topManga, currentList: current, upcomingList: upcoming, searchResults: searchTable, showSection: "search"});
 });
 
-async function searchContent(title, type) {
+async function searchContent(request) {
+    const type = request.body.searchContentType;
+    const searchFilter = request.body.searchFilter;
+
     let list = `
         <table class="searchTable">
         <colgroup>
@@ -66,7 +70,15 @@ async function searchContent(title, type) {
     `;
 
     try {
-        const response = await fetch(`https://api.jikan.moe/v4/${type.toLowerCase()}?q=${title}`);
+        let response;
+        if (searchFilter == "Title") {
+            const title = request.body.searchTitle;
+            response = await fetch(`https://api.jikan.moe/v4/${type.toLowerCase()}?q=${title}`);
+        } else {
+            const genresArray = [].concat(request.body.searchGenre || []);
+            const genres = genresArray.join(",");
+            response = await fetch(`https://api.jikan.moe/v4/${type.toLowerCase()}?genres=${genres}`);
+        }
         const result = await response.json();
         const arr = result.data;
         arr.forEach(item => {
@@ -83,7 +95,7 @@ async function searchContent(title, type) {
                 <td>${item.title_english || item.title}</td> 
                 <td>${str_genres}</td> 
                 <td>${type === "Anime" ? item.episodes || "n/a" : item.chapters || "n/a"}</td>
-                <td>${item.score}</td>
+                <td>${item.score || "n/a"}</td>
                 <td> <button class="review-btn">Review</button> <button class="addList-btn">Add To List</button> </td>
             </tr>`;
         })
