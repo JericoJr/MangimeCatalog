@@ -1066,6 +1066,21 @@ label {
     font-size: 1.5vw;
 }
 
+#genreAddSection {
+    margin-left: 2vw;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 genres per row */
+    gap: 0.5rem 1.25rem; /* row gap | column gap */
+    align-items: start;
+}
+
+#genreAddSection label {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    white-space: nowrap; /* prevents text wrapping */
+}
+
 .addGenreInput {
     height: 1.5vw;
     width: 1.5vw;
