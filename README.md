@@ -2,21 +2,64 @@
 
 App Description: Mangime Catalog is a personal digital library and journal website for browsing all anime and manga related content. 
 ________________________________________________________________________________________________________________________________
-Features:
+✨ Features
+🔍 Discover Anime & Manga
 
-🔍 Search & Browse: Explore anime and manga content using Jikan API
+Browse random anime and manga recommendations
 
-📚 Personal Library: Save favorite content with fields like title, type, genre, and status
+Explore top-rated, current, and upcoming content
 
-⏳ Status Tracking: Track progress: Completed, Waitlist, Reading/Watching
+Search anime and manga using the Jikan API
 
-⭐ Ratings & Notes: Add personal ratings and comments for each entry
+View summaries and community reviews for each title
 
-🔒 User Authentication: Register, log in, and manage sessions securely
+📚 Personal Library
 
-✉️ Forgot Password: Request a code to reset your password
+Save your favorite anime and manga in a personal library
 
-📊 Dynamic Sorting: Sort your library by newest, earliest, title, status, or rating
+Store details such as title, type, genre, and status
+
+⏳ Progress Tracking
+
+Track your viewing/reading progress with statuses:
+
+Completed
+
+Watching / Reading
+
+Waitlist
+
+⭐ Ratings & Notes
+
+Add personal ratings to each entry
+
+Write private notes and comments for future reference
+
+🔒 User Authentication & Security
+
+Secure user registration and login system
+
+Session-based authentication
+
+All saved data is private and tied to the user’s account
+
+✉️ Password Recovery
+
+Reset forgotten passwords via email verification code
+
+Secure password recovery flow
+
+📊 Dynamic Sorting & Organization
+
+Sort your library by:
+
+Newest or earliest added
+
+Title (A–Z)
+
+Status
+
+Rating
 ________________________________________________________________________________________________________________________________
 Tech Stack:
 
