@@ -300,7 +300,7 @@
 
                         //document.querySelector('.popup-content').innerHTML = `<p>id: ${contentID || "none"}, type: ${contentType | "none"}</p>`;
 
-                        console.log("Dataset:", btn.dataset); 
+                        // console.log("Dataset:", btn.dataset); 
 
                         const response = await fetch("/browse/reviewContent", {
                             method: "POST",
@@ -312,7 +312,7 @@
                                 contentType
                             })
                         });
-                        console.log("Response status:", response.status);
+                        // console.log("Response status:", response.status);
 
                         if (!response.ok) {
                             const text = await response.text();
@@ -321,7 +321,8 @@
                         }
 
                         const result = await response.json();
-                        // console.log(result);
+                        const reviews = await getReviews(contentID, contentType);
+                        // console.log("Reviews Result:", reviews);
                         const data = result.data;
                         // Use JSON to update the page
                         document.getElementById("popup-content").innerHTML = `
@@ -335,9 +336,35 @@
                                     <span class="item-text">${data.background || "none"}</span>
                                 </div>
                                 <div class="item-reviews">
-                                    <span class="item-title">Reviews:</span>
+                                    <div class="review-title">
+                                        <span class="item-title">Reviews: <button id="addReview">+</button></span>
+                                    </div>
+                                    <div id="displayReview">
+                                        ${reviews}
+                                    </div>
+                                </div>
+                                <div id="addReview-section">
+                                    <form class="addReviewForm" action="/browse/addReview" method="POST">
+                                        <input type="hidden" name="contentID" value="${contentID}">
+                                        <input type="hidden" name="contentType" value="${contentType}">
+                                        <input type="text" class="reviewText" name="reviewText" placeholder="Type Review" maxlength="80">
+                                        <button type="submit" class="addReviewSubmit">submit</button>
+                                    </form>
                                 </div>
                         `;
+                        // document.querySelectorAll(".addReviewSubmit").addEventListener("click", () => {
+                        //     document.querySelector(".reviewText").value = "";
+                        // });
+
+                        const addReviewBtn = document.getElementById("addReview");
+                        const addReviewSection = document.getElementById("addReview-section");
+                        addReviewBtn.addEventListener("click", () => {
+                            if(addReviewSection.style.display == "none") {
+                                addReviewSection.style.display = "flex";
+                            } else {
+                                addReviewSection.style.display = "none";
+                            }
+                        });
                     } else {
                         popup.style.display = "none";
                     }
@@ -345,8 +372,29 @@
             });
         });
 
+        async function getReviews(id, type) {
+            const response = await fetch("/browse/retrieveReviews", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    contentID: id,
+                    contentType: type
+                })
+            });
+            // console.log("Response status:", response.status);
 
-            
+            if (!response.ok) {
+                const text = await response.text();
+                console.error("Server returned:", text);
+                return;
+            }
+
+            const result = await response.json();
+            // console.log("JavaScript Result:",result.data);
+            return result.data;
+        }
 
 
     

@@ -23,9 +23,17 @@ const mangaSchema = new mongoose.Schema({
   comments: String
 });
 
+const reviewSchema = new mongoose.Schema({
+  user: String,
+  contentID: Number, 
+  type: String,
+  review: String
+})
+
 //Creates model only once, if exists using exisiting, otherwise create new one
 const Anime = mongoose.models.Anime || mongoose.model("Anime", animeSchema);
 const Manga = mongoose.models.Manga || mongoose.model("Manga", mangaSchema);
+const Review = mongoose.models.Review || mongoose.model("Review", reviewSchema);
 
 router.get("/", async (request, response) => {
     const delay = ms => new Promise(res => setTimeout(res, ms));
@@ -82,7 +90,7 @@ router.post("/addToList", async (request, response) => {
     response.sendStatus(204);
 });
 
-router.post("/reviewContent", async(request, response) => {
+router.post("/reviewContent", async (request, response) => {
     const objectID = request.body.contentID;
     // console.log(`ObjectID: ${objectID}`);
     const contentType = request.body.contentType;
@@ -98,6 +106,79 @@ router.post("/reviewContent", async(request, response) => {
         data
     });
 });
+
+router.post("/addReview", async (request, response) => {
+    const objectID = request.body.contentID;
+    // console.log(`ObjectID: ${objectID}`);
+    const contentType = request.body.contentType;
+    // console.log(`Type: ${contentType}`);
+
+    const delay = ms => new Promise(res => setTimeout(res, ms));
+    await delay(350);
+    let result = await addReview(objectID, contentType, request);
+    if (result) {
+        console.log("added Review");
+    }
+    response.sendStatus(204);
+});
+
+router.post("/retrieveReviews", async (request, response) => {
+    const objectID = request.body.contentID;
+    // console.log(`ObjectID: ${objectID}`);
+    const contentType = request.body.contentType;
+    // console.log(`Type: ${contentType}`);
+
+    const delay = ms => new Promise(res => setTimeout(res, ms));
+    await delay(350);
+    let result = await getReviews(objectID);
+    // console.log(`Node.js Retrieving: ${result}`);
+    response.json({
+        data: result
+    });
+});
+
+async function getReviews(id) {
+    try {
+        await mongoose.connect(process.env.MONGO_CONNECTION_STRING, { dbName: "contentDB"});
+        // console.log(`Matching id: ${id}, ${typeof id}`);
+        const numID = parseInt(id);
+        const collection = mongoose.connection.db.collection("reviews");
+        const data = await collection.find({contentID: numID}).sort({ _id: -1}).toArray();
+        // console.log(data);
+        let reviewSection = ``;
+        let count = 0;
+        data.forEach(content => { 
+            if (count < 3) {
+                reviewSection += `
+                    <span class="user-review">"${content.review}"</span>
+                `;
+            } 
+            count += 1;
+        });
+        mongoose.disconnect();
+        return reviewSection;
+    } catch (err) {
+        console.error(err);
+        return `<span class="user-review">Error Fetching Reviews</span>`;
+    }
+}
+
+async function addReview(objectID, type, request) {
+    try {
+        await mongoose.connect(process.env.MONGO_CONNECTION_STRING, { dbName: "contentDB"});
+        await Review.create({
+            user: request.session.user.email,
+            contentID: objectID,
+            type: type,
+            review: request.body.reviewText
+        });
+        mongoose.disconnect();
+    } catch (err) {
+        console.error(err);
+        return false;
+    }
+    return true;
+}
 
 async function review(id, type) {
     try {

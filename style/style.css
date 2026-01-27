@@ -806,7 +806,7 @@ label {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    height: 60%;
+    height: auto;
     width: 50%;
 
     align-items: center;
@@ -874,6 +874,59 @@ label {
     font-size: 1vw;
     display:inline;
     gap:0;
+}
+
+/* .item-reviews {
+     border: 2px solid goldenrod; 
+} */
+
+#addReview-section {
+    display: none;
+    width: 100%;
+    margin-top: 1.5vw;
+    /* border: 2px solid red; */
+}
+
+.addReviewForm {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+#addReview {
+    font-size: 1vw;
+    color: white;
+    background-color: transparent;
+    border: white solid 0.2vw;
+    border-radius: 10vw;
+}
+
+#addReview:hover {
+    font-size: 1.2vw;
+    color: rgb(2, 244, 39);
+    border: rgb(2, 244, 39) solid 0.2vw;
+    font-weight: bolder;
+}
+
+.reviewText {
+    width: 90%;
+    font-size: 1vw;
+}
+
+.addReviewSubmit {
+    width: 10%;
+    font-size: 1vw;
+    text-align: center;
+}
+
+#displayReview {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5vw;
+}
+
+.user-review {
+    font-size: 1vw;
 }
 
 /* ---------- My Stuff --------------- */
