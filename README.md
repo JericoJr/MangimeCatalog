@@ -62,19 +62,45 @@ ________________________________________________________________________________
 
     - Rating
 ________________________________________________________________________________________________________________________________
-Tech Stack:
+🛠️Tech Stack:
 
--Backend: Node.js, Express.js
+- Backend:
 
--Database: MongoDB, Mongoose
+      Node.js – JavaScript runtime for the server
 
--Frontend: HTML, CSS, JavaScript, EJS templates
+      Express.js – Web framework for routing and middleware
 
--Session Management: express-session
+      Express Router – Modular route handling
 
--Email Sending: Nodemailer (Works Only Locally)
+- Database:
 
--Development Tools: Nodemon
+      MongoDB – NoSQL database for storing user and content data
+
+      Mongoose – ODM for schema modeling and database interaction
+
+- Frontend:
+
+      HTML5 & CSS3 – Structure and styling
+
+      JavaScript (Vanilla) – Client-side interactivity
+
+      EJS (Embedded JavaScript) – Server-side templating engine
+
+- Authentication & Sessions:
+
+      express-session – Session-based authentication and user state management
+
+- Email & Notifications:
+
+      Nodemailer – Email delivery for password recovery (⚠️ Configured for local development only)
+
+- Configuration & Utilities:
+
+      dotenv – Environment variable management
+
+- Development Tools:
+
+      Nodemon – Automatically restarts server during development
 ________________________________________________________________________________________________________________________________
 APIs: 
 
