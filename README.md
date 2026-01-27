@@ -3,63 +3,64 @@
 App Description: Mangime Catalog is a personal digital library and journal website for browsing all anime and manga related content. 
 ________________________________________________________________________________________________________________________________
 ✨ Features
+
 🔍 Discover Anime & Manga
 
-Browse random anime and manga recommendations
+> Browse random anime and manga recommendations
 
-Explore top-rated, current, and upcoming content
+> Explore top-rated, current, and upcoming content
 
-Search anime and manga using the Jikan API
+> Search anime and manga using the Jikan API
 
-View summaries and community reviews for each title
+> View summaries and community reviews for each title
 
 📚 Personal Library
 
-Save your favorite anime and manga in a personal library
+> Save your favorite anime and manga in a personal library
 
-Store details such as title, type, genre, and status
+> Store details such as title, type, genre, and status
 
 ⏳ Progress Tracking
 
-Track your viewing/reading progress with statuses:
+> Track your viewing/reading progress with statuses:
 
-Completed
+    - Completed
 
-Watching / Reading
+    - Watching / Reading
 
-Waitlist
+    - Waitlist
 
 ⭐ Ratings & Notes
 
-Add personal ratings to each entry
+> Add personal ratings to each entry
 
-Write private notes and comments for future reference
+> Write private notes and comments for future reference
 
 🔒 User Authentication & Security
 
-Secure user registration and login system
+> Secure user registration and login system
 
-Session-based authentication
+> Session-based authentication
 
-All saved data is private and tied to the user’s account
+> All saved data is private and tied to the user’s account
 
 ✉️ Password Recovery
 
-Reset forgotten passwords via email verification code
+> Reset forgotten passwords via email verification code (works locally)
 
-Secure password recovery flow
+> Secure password recovery flow
 
 📊 Dynamic Sorting & Organization
 
-Sort your library by:
+> Sort your library by:
+  
+    - Newest or earliest added
 
-Newest or earliest added
+    - Title (A–Z)
 
-Title (A–Z)
+    - Status
 
-Status
-
-Rating
+    - Rating
 ________________________________________________________________________________________________________________________________
 Tech Stack:
 
