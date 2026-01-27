@@ -1091,54 +1091,62 @@ label {
     padding-bottom: 2vw;
     padding-right: 0vw;
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1vw;
 }
 
 .edit-Title {
     font-family: "Bitcount Prop Single";
     color: rgb(206, 175, 2);
-    font-size: 3vw;
+    font-size: 2vw;
+}
+
+.editForm label {
+    font-size: 1vw;
 }
 
 .editContentFieldset label {
-    font-size: 2vw;
+    font-size: 1.5vw;
 }
 
 .editTitleInput {
     width: 35vw;
-    height: 2vw;
-    font-size: 1.5vw;
+    height: 1.2vw;
+    font-size: 1vw;
 }
 
 .editTypeInput {
-    height: 1.5vw;
-    width: 1.5vw;
+    height: 0.8vw;
+    width: 0.8vw;
+    font-size: 1vw;
 }
 
 .editStatusInput {
     width: 20vw;
-    height: 3vw;
-    font-size: 1.5vw;
+    height: 1.6vw;
+    font-size: 1vw;
 }
 
 .editGenreInput {
-    height: 1.5vw;
-    width: 1.5vw;
+    height: 0.8vw;
+    width: 0.8vw;
 }
 
 .editRatingInput {
     width: 5vw;
-    height: 1.5vw;
-    font-size: 1.5vw;
+    height: 1.2vw;
+    font-size: 1vw;
 }
 
 .editCommentsInput {
     width: 40vw;
     height: 10vw;
-    font-size: 1.5vw;
+    font-size: 1vw;
 }
 
 .editSubmit, .editReset, .editCancel {
-    font-size: 1.5vw;
+    font-size: 1vw;
 }
 
 #genreEditSection {

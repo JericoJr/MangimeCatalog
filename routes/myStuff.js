@@ -267,18 +267,26 @@ async function editContent(typeContent, id) {
         let editForm = `
             <div class="edit-popup">
                 <form action="/myStuff/submitEdit" method="POST" class="editForm">
-                    <label class="edit-Title">Edit Form:</label> <br>
+                    <div>
+                    <span class="edit-Title">Edit Form:</h4> <span>
+                    </div>
+                    <div>
                     <input type="hidden" name="objectID" value="${id}"> 
                     <label>Title: <input type="text" class="editTitleInput" name="title" maxlength="75" value="${data.title}" required></label> <br>
+                    </div>
+                    <div>
                     <label>Type: 
                         ${typeSection}
-                    </label> <br>  
+                    </label>  
+                    </div>
+                    <div>
                     <label>Status: </label>   
                     <select name="status" class="editStatusInput" required>
                         ${statusSection}
-                    </select> <br>     
+                    </select> 
+                    </div>
+                    <div>   
                     <label>Genre: </label> 
-
                     <div id="genreEditSection">
                     <label><input type="checkbox" class="editGenreInput" name="genre" value="Action" ${data.genre.includes("Action") ? "checked" : ""}>Action</label>
                     <label><input type="checkbox" class="editGenreInput" name="genre" value="Adventure" ${data.genre.includes("Adventure") ? "checked" : ""}>Adventure</label>
@@ -309,14 +317,20 @@ async function editContent(typeContent, id) {
                     <label><input type="checkbox" class="editGenreInput" name="genre" value="Super Power" ${data.genre.includes("Super Power") ? "checked" : ""}>Super Power</label>
                     <label><input type="checkbox" class="editGenreInput" name="genre" value="Survival" ${data.genre.includes("Survival") ? "checked" : ""}>Survival</label>
                     </div>
+                    </div>
 
+                    <div>
                     <label>Rating: <input type="number" class="editRatingInput" name="rating" min="1" max="10" value="${data.rating}" required> out of 10</label> <br>
+                    </div>
+                    <div>
                     <label>Comments:</label><br>
-                    <label><textarea class="editCommentsInput" rows="10" cols="20" name="comments">${data.comments}</textarea></label>
-                    <br>
+                    <textarea class="editCommentsInput" rows="10" cols="20" name="comments">${data.comments}</textarea></label>
+                    </div>
+                    <div>
                     <input class="editCancel" type="submit" name="editAction" value="Cancel">
                     <input class="editReset" type="reset">
                     <input class="editSubmit" type="submit" name="editAction" value="Submit">
+                    </div>
                 </form>
             </div>
         `; 
